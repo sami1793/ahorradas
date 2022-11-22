@@ -18,36 +18,45 @@
     <header>
 
     </header>
-    <section>
+    <section class="mt-5 mb-5 ml-3 mr-3">
         <div class="columns is-centered">
-            <div class="column is-3">
+            <div class="column is-3-fullhd is-4-widescreen is-3-desktop">
                 <div class="box">
-                    <h2 class="title is-2">Balance</h2>
-                    <div class="level">
-                        <p class="level-left is-size-5">Ganancias</p>
-                        <p class="level-right has-text-success">
-                            <span>+$0</span>
-                        </p>
-                    </div>
-                    <div class="level">
-                        <p class="level-left is-size-5">Gastos</p>
-                        <p class="level-right has-text-danger">
-                            <span>-$0</span>
-                        </p>
-                    </div>
-                    <div class="level">
-                        <p class="is-size-4">Total</p>
-                        <p class="level-right has-text-weight-bold">
-                            <span>$0</span>
-                        </p>
-                    </div>                   
+                    <h2 class="title is-2 mb-6">Balance</h2>
+                    <div class="container">
+                        <div class="level">
+                            <p class="level-left is-size-5">Ganancias</p>
+                            <span class="level-right has-text-success">
+                                <span>+$0</span>
+                            </span>
+                        </div>
+                        <div class="level">
+                            <p class="level-left is-size-5">Gastos</p>
+                            <span class="level-right has-text-danger">
+                                <span>-$0</span>
+                            </span>
+                        </div>
+                        <div class="level">
+                            <p class="is-size-4">Total</p>
+                            <span class="level-right has-text-weight-bold">
+                                <span>$0</span>
+                            </span>
+                        </div> 
+                    </div>                  
                 </div>
                 <div class="box">
-                    <h3 class="title is-3">Filtros</h3>
+                    <div class="level">
+                        <div class="level-left">
+                            <h3 class="title is-3">Filtros</h3>
+                        </div>
+                        <div class="level-right">
+                            <a class="">Ocultar Filtros</a>
+                        </div>
+                    </div>
                     <div class="field">
                         <label class="label">Tipo</label>
                         <div class="control">
-                            <div class="select is-fullwidth is-primary">
+                            <div class="select is-fullwidth">
                                 <select>
                                     <option>Todos</option>
                                     <option>Gasto</option>
@@ -59,7 +68,7 @@
                     <div class="field">
                         <label class="label">Categoria</label>
                         <div class="control">
-                            <div class="select is-fullwidth is-primary">
+                            <div class="select is-fullwidth">
                                 <select>
                                     <option>Todas</option>
                                     <option>Comida</option>
@@ -81,7 +90,7 @@
                     <div class="field">
                         <label class="label">Ordenar por</label>
                         <div class="control">
-                            <div class="select is-fullwidth is-primary">
+                            <div class="select is-fullwidth">
                                 <select>
                                     <option>Más reciente</option>
                                     <option>Menos reciente</option>
@@ -95,7 +104,8 @@
                     </div>
                 </div>
             </div>
-            <div class="column is-7">
+            <div class="column is-7-fullhd is-6-widescreen is-6-desktop is-8-tablet">
+                <!-- ***BOX OPERACIONES*** -->
                 <div class="box">
                     <div class="block">
                         <div class="level">
@@ -115,11 +125,12 @@
                             <img src="/assets/images/money.svg" alt="imagen de dinero">
                         </figure>
                     </div>
-                    <div class="block m-6">
+                    <div class="block m-6 has-text-centered">
                         <p class="title is-spaced is-size-4">Sin resultados</p>
                         <p class="subtitle is-size-6">Cambia los filtros o agrega operaciones</p>
                     </div>
                 </div>
+                <!-- FIN BOX OPERACIONES -->
             </div>
         </div>
     </section>
