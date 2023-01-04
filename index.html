@@ -167,46 +167,61 @@
                 <!-- FIN BOX OPERACIONES -->
             </div>
         </div>
-        <div class="box container">
-            <h2 class="title is-2">Nueva operación</h2>
-            <div class="field">
-                <label class="label">Descripción</label>
-                <div class="control">
-                    <input class="input">
-                </div>
-            </div>
-            <div class="field">
-                <label class="label">Monto</label>
-                <div class="control">
-                    <input class="input" type="number">
-                </div>
-            </div>
-            <div class="field">
-                <label class="label">Tipo</label>
-                <div class="control">
-                    <div class="select is-fullwidth">
-                        <select>
-                            <option>Gasto</option>
-                            <option>Ganancia</option>
-                        </select>
+        <div class="columns">
+            <div class="box container column is-7">
+                    <h2 class="title is-2 mb-6 has-text-weight-bold">Nueva operación</h2>
+                <div class="field">
+                    <label class="label">Descripción</label>
+                    <div class="control">
+                        <input class="input">
                     </div>
                 </div>
-            </div>
-            <div class="field">
-                <label class="label">Categoria</label>
-                <div class="control">
-                    <div class="select is-fullwidth">
-                        <select>
-                            <option>Comida</option>
-                        </select>
+                <div class="field">
+                    <label class="label">Monto</label>
+                    <div class="control">
+                        <input class="input" type="number">
                     </div>
                 </div>
-            </div>
-            <div class="field">
-                <label class="label">Fecha</label>
-                <div class="control">
-                    <input class="input" type="date">
+                <div class="field">
+                    <label class="label">Tipo</label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select>
+                                <option>Gasto</option>
+                                <option>Ganancia</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
+                <div class="field">
+                    <label class="label">Categoria</label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select>
+                                <option>Comida</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Fecha</label>
+                    <div class="control">
+                        <input class="input" type="date">
+                    </div>
+                </div>
+                <!-- Botones -->
+                <div class="field is-grouped is-grouped-right mt-6">
+                    <p class="control">
+                      <a class="button is-light">
+                        Cancelar
+                      </a>
+                    </p>
+                    <p class="control">
+                        <a class="button is-primary">
+                          Agregar
+                        </a>
+                      </p>
+                  </div>
             </div>
         </div>
     </section>
