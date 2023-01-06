@@ -18,36 +18,37 @@
     <header>
         <nav class="navbar is-primary is-spaced" role="navigation" aria-label="main navigation">
             <div class="navbar-brand title is-2 m-0">
-              <a class="navbar-item">
-                <span class="icon"><i class="fa-solid fa-wallet"></i></span>
-                <span class="ml-5">AhorrADAs</span>
-              </a>
-          
-              <a role="button" id="navbar-burguer" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-              </a>
+                <a class="navbar-item">
+                    <span class="icon"><i class="fa-solid fa-wallet"></i></span>
+                    <span class="ml-5">AhorrADAs</span>
+                </a>
+
+                <a role="button" id="navbar-burguer" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbar">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
             </div>
-          
-            <div id="navbar" class="navbar-menu">              
-          
-              <div class="navbar-end">
-                <a class="navbar-item">
-                    <span class="icon"><i class="fa-solid fa-chart-line"></i></span>
-                    <span>Balance</span>
-                </a>
-                <a class="navbar-item">
-                    <span class="icon"><i class="fa-solid fa-tag"></i></span>
-                    <span>Categorías</span>
-                </a>
-                <a class="navbar-item">
-                    <span class="icon"><i class="fa-solid fa-chart-pie"></i></span>
-                    <span>Reportes</span>
-                </a>
-              </div>
+
+            <div id="navbar" class="navbar-menu">
+
+                <div class="navbar-end">
+                    <a class="navbar-item">
+                        <span class="icon"><i class="fa-solid fa-chart-line"></i></span>
+                        <span>Balance</span>
+                    </a>
+                    <a class="navbar-item">
+                        <span class="icon"><i class="fa-solid fa-tag"></i></span>
+                        <span>Categorías</span>
+                    </a>
+                    <a class="navbar-item">
+                        <span class="icon"><i class="fa-solid fa-chart-pie"></i></span>
+                        <span>Reportes</span>
+                    </a>
+                </div>
             </div>
-          </nav>
+        </nav>
     </header>
     <section class="mt-5 mb-5 ml-3 mr-3">
         <div class="columns is-centered is-multiline">
@@ -73,8 +74,8 @@
                             <span class="level-right has-text-weight-bold">
                                 <span>$0</span>
                             </span>
-                        </div> 
-                    </div>                  
+                        </div>
+                    </div>
                 </div>
                 <div class="box">
                     <div class="level">
@@ -168,7 +169,7 @@
         </div>
         <div class="columns m-5">
             <div class="box container column is-12-mobile is-7-tablet-only is-7-desktop-only is-7-widescreen">
-                    <h2 class="title is-2 mb-6 has-text-weight-bold">Nueva operación</h2>
+                <h2 class="title is-2 mb-6 has-text-weight-bold">Nueva operación</h2>
                 <div class="field">
                     <label class="label">Descripción</label>
                     <div class="control">
@@ -211,16 +212,37 @@
                 <!-- Botones -->
                 <div class="field is-grouped is-grouped-right mt-6">
                     <p class="control">
-                      <a class="button is-light">
-                        Cancelar
-                      </a>
+                        <a class="button is-light">
+                            Cancelar
+                        </a>
                     </p>
                     <p class="control">
                         <a class="button is-primary">
-                          Agregar
+                            Agregar
                         </a>
-                      </p>
-                  </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--*************************
+               CATEGORIAS       
+    ***************************** -->
+    <section class="container m-6">
+        <div class="columns">
+            <div class="column box">
+                <h2 class="title is-2 has-text-centered has-text-weight-bold">Categorías</h2>
+                <label class="label">Nombre</label>
+                <div class="field is-grouped">
+                    <div class="control is-expanded">
+                        <input class="input" placeholder="Escriba una categoría">
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -238,7 +260,7 @@
                         <div class="block mb-6">
                             <figure class="image is-2by1">
                                 <img src="/assets/images/projections.svg" alt="imagen de dinero">
-                            </figure>                        
+                            </figure>
                         </div>
                         <div class="block has-text-centered">
                             <h3 class="title is-size-4">Operaciones insuficientes</h3>
