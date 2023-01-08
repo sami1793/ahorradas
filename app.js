@@ -21,19 +21,13 @@ const generateCategories = (categories) => {
 generateCategories(categories);
 
 //----Agregar categorias------
-let addCategory = (categoryObjet) => {
+let addCategory = () => {
   $("#add-category-button").addEventListener("click", () => {
-    categories.push(categoryObjet);
+    categories.push({ name: `${$("#category-input").value}` });
     generateCategories(categories); //vuelvo a actualizar la info
+    $("#category-input").value="";//lo limpio
   });
 };
 
-//---Leer categoria y agregarla------
-let categoryInput = () => {
-  $("#category-input").addEventListener("change", (e) => {
-    addCategory({ name: `${e.target.value}` });
-    e.target.value = ""; //lo limpio
-  });
-};
+addCategory();
 
-categoryInput();
