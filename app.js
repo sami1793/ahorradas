@@ -5,6 +5,9 @@ $('#balance-link').addEventListener('click', ()=>{
     $('#view-balance').classList.remove('oculto');
     $('#view-categories').classList.add('oculto');
     $('#view-reports').classList.add('oculto');
+
+    $('#view-balance-operation-filter').classList.remove('oculto');
+    $('#view-new-operation').classList.add('oculto')
 })
 $('#categories-link').addEventListener('click', ()=>{
     $('#view-balance').classList.add('oculto');
@@ -18,10 +21,16 @@ $('#reports-link').addEventListener('click', ()=>{
 })
 
 // Funcionamiento menú burguer
-$("#navbar-burguer").addEventListener("click", () => {
-  $("#navbar-burguer").classList.toggle("is-active");
-  $("#navbar").classList.toggle("is-active");
+$('#navbar-burguer').addEventListener('click', () => {
+  $('#navbar-burguer').classList.toggle('is-active');
+  $('#navbar').classList.toggle('is-active');
 });
+
+//Funcionamiento Nueva Operacion
+$('#new-operation-button').addEventListener('click',()=>{
+    $('#view-new-operation').classList.remove('oculto')
+    $('#view-balance-operation-filter').classList.add('oculto')
+})
 
 // Mostrar las categorias del array
 const generateCategories = (categories) => {
