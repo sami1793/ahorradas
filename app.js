@@ -28,8 +28,12 @@ $('#navbar-burguer').addEventListener('click', () => {
 
 //Funcionamiento Nueva Operacion
 $('#new-operation-button').addEventListener('click',()=>{
-    $('#view-new-operation').classList.remove('oculto')
-    $('#view-balance-operation-filter').classList.add('oculto')
+    $('#view-new-operation').classList.remove('oculto');
+    $('#view-balance-operation-filter').classList.add('oculto');
+})
+//Funcionamiento Ocultar Filtros
+$('#link-hide-filters').addEventListener('click', () =>{
+    $('#filter-container').classList.toggle('oculto');
 })
 
 // Mostrar las categorias del array
