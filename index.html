@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
     <title>Ahorradas</title>
 </head>
 
@@ -34,15 +35,15 @@
             <div id="navbar" class="navbar-menu">
 
                 <div class="navbar-end">
-                    <a class="navbar-item">
+                    <a class="navbar-item" id="balance-link">
                         <span class="icon"><i class="fa-solid fa-chart-line"></i></span>
                         <span>Balance</span>
                     </a>
-                    <a class="navbar-item">
+                    <a class="navbar-item" id="categories-link">
                         <span class="icon"><i class="fa-solid fa-tag"></i></span>
                         <span>Categorías</span>
                     </a>
-                    <a class="navbar-item">
+                    <a class="navbar-item" id="reports-link">
                         <span class="icon"><i class="fa-solid fa-chart-pie"></i></span>
                         <span>Reportes</span>
                     </a>
@@ -50,7 +51,10 @@
             </div>
         </nav>
     </header>
-    <section class="mt-5 mb-5 ml-3 mr-3">
+    <!--*************************
+               BALANCE       
+    ***************************** -->
+    <section class="container m-6" id="view-balance">
         <div class="columns is-centered is-multiline">
             <div class="column is-3-desktop is-full-touch">
                 <div class="box">
@@ -224,10 +228,13 @@
             </div>
         </div>
     </section>
+    <!-- *** [FIN BALANCE] *** -->
+
+
     <!--*************************
                CATEGORIAS       
     ***************************** -->
-    <section class="container m-6">
+    <section class="container m-6 oculto" id="view-categories">
         <div class="columns">
             <div class="column box">
                 <h2 class="title is-2 has-text-weight-bold">Categorías</h2>
@@ -255,10 +262,13 @@
             </div>
         </div>
     </section>
+    <!-- *** [FIN CATEGORIAS] *** -->
+
+
     <!--*************************
                REPORTES       
     ***************************** -->
-    <section class="container">
+    <section class="container m-6 oculto" id="view-reports">
         <div class="columns is-centered">
             <div class="column is-11-touch is-9-desktop-only is-8-widescreen">
                 <!-- ***BOX REPORTES*** -->
@@ -282,7 +292,9 @@
             </div>
         </div>
     </section>
-    <!-- ### FIN [REPORTES] ### -->
+    <!-- *** [FIN REPORTES] *** -->
+
+
     <script src="categorias.js"></script>
     <script src="app.js"></script>
 </body>

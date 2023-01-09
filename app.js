@@ -1,5 +1,22 @@
 const $ = (selector) => document.querySelector(selector);
 
+//Funcionamiento nav balance/categorias/reportes
+$('#balance-link').addEventListener('click', ()=>{
+    $('#view-balance').classList.remove('oculto');
+    $('#view-categories').classList.add('oculto');
+    $('#view-reports').classList.add('oculto');
+})
+$('#categories-link').addEventListener('click', ()=>{
+    $('#view-balance').classList.add('oculto');
+    $('#view-categories').classList.remove('oculto');
+    $('#view-reports').classList.add('oculto');
+})
+$('#reports-link').addEventListener('click', ()=>{
+    $('#view-balance').classList.add('oculto');
+    $('#view-categories').classList.add('oculto');
+    $('#view-reports').classList.remove('oculto');
+})
+
 // Funcionamiento menú burguer
 $("#navbar-burguer").addEventListener("click", () => {
   $("#navbar-burguer").classList.toggle("is-active");
