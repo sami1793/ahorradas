@@ -5,6 +5,7 @@ $("#navbar-burguer").addEventListener("click", () => {
   $("#navbar-burguer").classList.toggle("is-active");
   $("#navbar").classList.toggle("is-active");
 });
+
 // Mostrar las categorias del array
 const generateCategories = (categories) => {
   $("#container-categories").innerHTML = ""; //refresco el array
@@ -13,7 +14,7 @@ const generateCategories = (categories) => {
         <span class="level-left tag is-primary is-light">${name}</span>
         <span class="level-right">
             <a class="level-item is-size-7">Editar</a>
-            <a class="level-item is-size-7 id="eliminar-categoria">Eliminar</a>
+            <a class="level-item is-size-7" onclick="deleteCategory(${name})">Eliminar</a>
         </span>
     </div>`;
   }
@@ -31,3 +32,11 @@ let addCategory = () => {
 
 addCategory();
 
+//----Remover categoria------
+let deleteCategory = (name) =>{
+    // categories = categories.filter((category)  =>
+    //     category.name !== "Comida");
+    // console.log(categories)
+    // generateCategories(categories);//volver a mostrar categorias
+    alert(name)
+}

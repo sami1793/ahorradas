@@ -1,4 +1,4 @@
-const categories = [
+let categories = [
     {
         name: "Comida"
     },
