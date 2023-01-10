@@ -54,9 +54,10 @@ generateCategories(categories);
 //----Agregar categorias------
 let addCategory = () => {
   $("#add-category-button").addEventListener("click", () => {
-    categories.push({ name: `${$("#category-input").value}` });
-    generateCategories(categories); //vuelvo a actualizar la info
-    $("#category-input").value="";//lo limpio
+    let sizeCategory = categories.length;
+    categories.push({ name: `${$("#category-input").value}` , id: sizeCategory + 1});
+    generateCategories(categories); //vuelvo a mostrar categorias
+    $("#category-input").value="";
   });
 };
 
