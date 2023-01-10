@@ -55,7 +55,8 @@ generateCategories(categories);
 let addCategory = () => {
   $("#add-category-button").addEventListener("click", () => {
     let sizeCategory = categories.length;
-    categories.push({ name: `${$("#category-input").value}` , id: sizeCategory + 1});
+    let lastIdCategory = categories[sizeCategory-1].id
+    categories.push({ name: `${$("#category-input").value}` , id: lastIdCategory + 1});
     generateCategories(categories); //vuelvo a mostrar categorias
     $("#category-input").value="";
   });
