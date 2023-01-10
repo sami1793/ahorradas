@@ -39,12 +39,12 @@ $('#link-hide-filters').addEventListener('click', () =>{
 // Mostrar las categorias del array
 const generateCategories = (categories) => {
   $("#container-categories").innerHTML = ""; //refresco el array
-  for (let { name } of categories) {
+  for (let { name, id } of categories) {
     $("#container-categories").innerHTML += `<div class="level is-mobile">
         <span class="level-left tag is-primary is-light">${name}</span>
         <span class="level-right">
             <a class="level-item is-size-7">Editar</a>
-            <a class="level-item is-size-7" onclick="deleteCategory(${name})">Eliminar</a>
+            <a class="level-item is-size-7" onclick="deleteCategory(${id})">Eliminar</a>
         </span>
     </div>`;
   }
@@ -63,10 +63,9 @@ let addCategory = () => {
 addCategory();
 
 //----Remover categoria------
-let deleteCategory = (name) =>{
-    // categories = categories.filter((category)  =>
-    //     category.name !== "Comida");
-    // console.log(categories)
-    // generateCategories(categories);//volver a mostrar categorias
-    alert(name)
+let deleteCategory = (id) =>{
+    categories = categories.filter((category)  =>
+        category.id !== id);
+    console.log(categories)
+    generateCategories(categories);//volver a mostrar categorias
 }

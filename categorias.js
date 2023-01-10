@@ -1,20 +1,26 @@
 let categories = [
     {
-        name: "Comida"
+        name: "Comida",
+        id:1
     },
     {
-        name: "Servicios"
+        name: "Servicios",
+        id:2
     },
     {
-        name: "Salidas"
+        name: "Salidas",
+        id:3
     },
     {
-        name: "Educación"
+        name: "Educación",
+        id:4
     },
     {
-        name: "Transporte"
+        name: "Transporte",
+        id:5
     },
     {
-        name: "Trabajo"
+        name: "Trabajo",
+        id:6
     }
 ]
