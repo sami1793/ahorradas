@@ -13,6 +13,8 @@ $('#categories-link').addEventListener('click', ()=>{
     $('#view-balance').classList.add('oculto');
     $('#view-categories').classList.remove('oculto');
     $('#view-reports').classList.add('oculto');
+    $('#view-edit-category').classList.add('oculto');
+    $('#view-category').classList.remove('oculto');
 })
 $('#reports-link').addEventListener('click', ()=>{
     $('#view-balance').classList.add('oculto');
@@ -74,5 +76,6 @@ let deleteCategory = (id) =>{
 
 //----Editar categoria------
 let editCategory = (id) =>{
-  alert(id)
+  $('#view-edit-category').classList.remove('oculto');
+  $('#view-category').classList.add('oculto');
 }

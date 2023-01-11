@@ -244,8 +244,8 @@
                CATEGORIAS       
     ***************************** -->
     <section class="container m-6 oculto" id="view-categories">
-        <div class="columns">
-            <div class="column box">
+        <div class="columns" >
+            <div class="column box" id="view-category">
                 <h2 class="title is-2 has-text-weight-bold">Categorías</h2>
                 <label class="label">Nombre</label>
                 <div class="field is-grouped">
@@ -271,26 +271,28 @@
             </div>
         </div>
         <!-- **Editar Categoria** -->
-        <div class="container m-6 oculto">
-            <h2 class="title is-2 has-text-weight-bold">Editar categoría</h2>
-            <label class="label">Nombre</label>
-            <div class="field" >
-                <div class="control is-expanded">
-                    <input class="input" id="category-input" placeholder="Escriba el nuevo nombre">
+        <div class="container columns is-centered m-6">
+            <div class="column box oculto is-8-widescreen" id="view-edit-category">
+                <h2 class="title is-2 has-text-weight-bold mb-6">Editar categoría</h2>
+                <label class="label">Nombre</label>
+                <div class="field">
+                    <div class="control is-expanded">
+                        <input class="input" id="category-input" placeholder="Escriba el nuevo nombre">
+                    </div>
                 </div>
-            </div>
-            <!-- Botones -->
-            <div class="field is-grouped is-grouped-right mt-6">
-                <p class="control">
-                    <a class="button is-light">
-                        Cancelar
-                    </a>
-                </p>
-                <p class="control">
-                    <a class="button is-primary">
-                        Editar
-                    </a>
-                </p>
+                <!-- Botones -->
+                <div class="field is-grouped is-grouped-right mt-6">
+                    <p class="control">
+                        <a class="button is-light">
+                            Cancelar
+                        </a>
+                    </p>
+                    <p class="control">
+                        <a class="button is-primary">
+                            Editar
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
     </section>
