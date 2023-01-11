@@ -43,7 +43,7 @@ const generateCategories = (categories) => {
     $("#container-categories").innerHTML += `<div class="level is-mobile">
         <span class="level-left tag is-primary is-light">${name}</span>
         <span class="level-right">
-            <a class="level-item is-size-7">Editar</a>
+            <a class="level-item is-size-7" onclick="editCategory(${id})">Editar</a>
             <a class="level-item is-size-7" onclick="deleteCategory(${id})">Eliminar</a>
         </span>
     </div>`;
@@ -53,12 +53,12 @@ generateCategories(categories);
 
 //----Agregar categorias------
 let addCategory = () => {
-  $("#add-category-button").addEventListener("click", () => {
+  $('#add-category-button').addEventListener('click', () => {
     let sizeCategory = categories.length;
     let lastIdCategory = categories[sizeCategory-1].id
-    categories.push({ name: `${$("#category-input").value}` , id: lastIdCategory + 1});
+    categories.push({ name: `${$('#category-input').value}` , id: lastIdCategory + 1});
     generateCategories(categories); //vuelvo a mostrar categorias
-    $("#category-input").value="";
+    $('#category-input').value='';
   });
 };
 
@@ -70,4 +70,9 @@ let deleteCategory = (id) =>{
         category.id !== id);
     console.log(categories)
     generateCategories(categories);//volver a mostrar categorias
+}
+
+//----Editar categoria------
+let editCategory = (id) =>{
+  alert(id)
 }
