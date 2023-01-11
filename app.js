@@ -45,7 +45,7 @@ const generateCategories = (categories) => {
     $("#container-categories").innerHTML += `<div class="level is-mobile">
         <span class="level-left tag is-primary is-light">${name}</span>
         <span class="level-right">
-            <a class="level-item is-size-7" onclick="editCategory(${id})">Editar</a>
+            <a class="level-item is-size-7" onclick="openEditCategory(${id})">Editar</a>
             <a class="level-item is-size-7" onclick="deleteCategory(${id})">Eliminar</a>
         </span>
     </div>`;
@@ -75,7 +75,28 @@ let deleteCategory = (id) =>{
 }
 
 //----Editar categoria------
-let editCategory = (id) =>{
+let openEditCategory = (id) =>{
+  $('#new-category-input').value='';
   $('#view-edit-category').classList.remove('oculto');
   $('#view-category').classList.add('oculto');
+  editCategory(id);
 }
+let editCategory = (id) =>{
+  let close = false;
+  $('#edit-category-button').addEventListener('click', (e)=>{
+    let newCategory = $('#new-category-input').value;
+    if(!close){
+      categories.map((c)=>{
+        if(c.id===id){
+          c.name=newCategory
+        }
+      })
+    }
+    close=true;
+    // vuelvo a la vista anterior
+    generateCategories(categories);
+    $('#view-edit-category').classList.add('oculto');
+    $('#view-category').classList.remove('oculto');
+  })
+}
+
