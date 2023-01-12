@@ -1,14 +1,18 @@
 const $ = (selector) => document.querySelector(selector);
 
 //Funcionamiento nav balance/categorias/reportes
-$("#balance-link").addEventListener("click", () => {
+
+let goToBalance = () =>{
   $("#view-balance").classList.remove("oculto");
   $("#view-categories").classList.add("oculto");
   $("#view-reports").classList.add("oculto");
 
   $("#view-balance-operation-filter").classList.remove("oculto");
   $("#view-new-operation").classList.add("oculto");
-});
+} 
+
+$("#balance-link").addEventListener("click", goToBalance);
+
 $("#categories-link").addEventListener("click", () => {
   $("#view-balance").classList.add("oculto");
   $("#view-categories").classList.remove("oculto");
@@ -119,11 +123,37 @@ let cancelEditCategory = () => {
 // **************************
 let operations = [];
 
+//Volver vista operaciones
+let returnViewOperation = () =>{
+
+}
+
+//Agregar operacion
+let addOperation = () =>{
+  let descriptionInfo = $('#description-new-operation-input').value
+  let amountInfo = $('#amount-new-operation-input').value
+  let typeInfo = $('#type-new-operation-input').value
+  let categoryInfo = $('#category-new-operation-input').value
+  let dateInfo = $('#date-new-operation-input').value
+
+  operations.push({
+    description: descriptionInfo,
+    amount: amountInfo,
+    type : typeInfo,
+    category : categoryInfo,
+    date : dateInfo
+  })
+}
+let cleanInputOperation = () =>{
+  $('#description-new-operation-input').value ='';
+  $('#amount-new-operation-input').value ='';
+  $('#type-new-operation-input').value ='';
+  $('#category-new-operation-input').value ='';
+  $('#date-new-operation-input').value ='';
+}
 $('#add-new-operation-button').addEventListener('click', ()=>{
-  alert($('#date-new-operation-input').value)
+  addOperation();
+  cleanInputOperation();
+  goToBalance();
 })
-$('#description-new-operation-input').value
-$('#amount-new-operation-input').value
-$('#type-new-operation-input').value
-$('#category-new-operation-input').value
-$('#date-new-operation-input').value
+
