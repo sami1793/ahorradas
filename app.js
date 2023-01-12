@@ -41,6 +41,7 @@ $("#link-hide-filters").addEventListener("click", () => {
 // Mostrar las categorias del array
 const generateCategories = (categories) => {
   $("#container-categories").innerHTML = ""; //refresco el array
+  $('#category-new-operation-input').innerHTML='';//refresco el desplegable categories
   for (let { name, id } of categories) {
     $("#container-categories").innerHTML += `<div class="level is-mobile">
         <span class="level-left tag is-primary is-light">${name}</span>
@@ -49,6 +50,9 @@ const generateCategories = (categories) => {
             <a class="level-item is-size-7" onclick="deleteCategory(${id})">Eliminar</a>
         </span>
     </div>`;
+    //Actualizo Desplegable Categorias
+    $('#category-new-operation-input').innerHTML += 
+    `<option>${name}</option>`
   }
 };
 generateCategories(categories);
@@ -108,3 +112,18 @@ let cancelEditCategory = () => {
     $("#view-category").classList.remove("oculto");
   });
 };
+
+
+// **************************
+// ********OPERACIONES*******
+// **************************
+let operations = [];
+
+$('#add-new-operation-button').addEventListener('click', ()=>{
+  alert($('#date-new-operation-input').value)
+})
+$('#description-new-operation-input').value
+$('#amount-new-operation-input').value
+$('#type-new-operation-input').value
+$('#category-new-operation-input').value
+$('#date-new-operation-input').value
