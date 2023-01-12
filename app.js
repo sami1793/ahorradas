@@ -1,42 +1,42 @@
 const $ = (selector) => document.querySelector(selector);
 
 //Funcionamiento nav balance/categorias/reportes
-$('#balance-link').addEventListener('click', ()=>{
-    $('#view-balance').classList.remove('oculto');
-    $('#view-categories').classList.add('oculto');
-    $('#view-reports').classList.add('oculto');
+$("#balance-link").addEventListener("click", () => {
+  $("#view-balance").classList.remove("oculto");
+  $("#view-categories").classList.add("oculto");
+  $("#view-reports").classList.add("oculto");
 
-    $('#view-balance-operation-filter').classList.remove('oculto');
-    $('#view-new-operation').classList.add('oculto')
-})
-$('#categories-link').addEventListener('click', ()=>{
-    $('#view-balance').classList.add('oculto');
-    $('#view-categories').classList.remove('oculto');
-    $('#view-reports').classList.add('oculto');
-    $('#view-edit-category').classList.add('oculto');
-    $('#view-category').classList.remove('oculto');
-})
-$('#reports-link').addEventListener('click', ()=>{
-    $('#view-balance').classList.add('oculto');
-    $('#view-categories').classList.add('oculto');
-    $('#view-reports').classList.remove('oculto');
-})
+  $("#view-balance-operation-filter").classList.remove("oculto");
+  $("#view-new-operation").classList.add("oculto");
+});
+$("#categories-link").addEventListener("click", () => {
+  $("#view-balance").classList.add("oculto");
+  $("#view-categories").classList.remove("oculto");
+  $("#view-reports").classList.add("oculto");
+  $("#view-edit-category").classList.add("oculto");
+  $("#view-category").classList.remove("oculto");
+});
+$("#reports-link").addEventListener("click", () => {
+  $("#view-balance").classList.add("oculto");
+  $("#view-categories").classList.add("oculto");
+  $("#view-reports").classList.remove("oculto");
+});
 
 // Funcionamiento menú burguer
-$('#navbar-burguer').addEventListener('click', () => {
-  $('#navbar-burguer').classList.toggle('is-active');
-  $('#navbar').classList.toggle('is-active');
+$("#navbar-burguer").addEventListener("click", () => {
+  $("#navbar-burguer").classList.toggle("is-active");
+  $("#navbar").classList.toggle("is-active");
 });
 
 //Funcionamiento Nueva Operacion
-$('#new-operation-button').addEventListener('click',()=>{
-    $('#view-new-operation').classList.remove('oculto');
-    $('#view-balance-operation-filter').classList.add('oculto');
-})
+$("#new-operation-button").addEventListener("click", () => {
+  $("#view-new-operation").classList.remove("oculto");
+  $("#view-balance-operation-filter").classList.add("oculto");
+});
 //Funcionamiento Ocultar Filtros
-$('#link-hide-filters').addEventListener('click', () =>{
-    $('#filter-container').classList.toggle('oculto');
-})
+$("#link-hide-filters").addEventListener("click", () => {
+  $("#filter-container").classList.toggle("oculto");
+});
 
 // Mostrar las categorias del array
 const generateCategories = (categories) => {
@@ -55,48 +55,56 @@ generateCategories(categories);
 
 //----Agregar categorias------
 let addCategory = () => {
-  $('#add-category-button').addEventListener('click', () => {
+  $("#add-category-button").addEventListener("click", () => {
     let sizeCategory = categories.length;
-    let lastIdCategory = categories[sizeCategory-1].id
-    categories.push({ name: `${$('#category-input').value}` , id: lastIdCategory + 1});
+    let lastIdCategory = categories[sizeCategory - 1].id;
+    categories.push({
+      name: `${$("#category-input").value}`,
+      id: lastIdCategory + 1,
+    });
     generateCategories(categories); //vuelvo a mostrar categorias
-    $('#category-input').value='';
+    $("#category-input").value = "";
   });
 };
 
 addCategory();
 
 //----Remover categoria------
-let deleteCategory = (id) =>{
-    categories = categories.filter((category)  =>
-        category.id !== id);
-    console.log(categories)
-    generateCategories(categories);//volver a mostrar categorias
-}
+let deleteCategory = (id) => {
+  categories = categories.filter((category) => category.id !== id);
+  console.log(categories);
+  generateCategories(categories); //volver a mostrar categorias
+};
 
 //----Editar categoria------
-let openEditCategory = (id) =>{
-  $('#new-category-input').value='';
-  $('#view-edit-category').classList.remove('oculto');
-  $('#view-category').classList.add('oculto');
+let openEditCategory = (id) => {
+  $("#new-category-input").value = "";
+  $("#view-edit-category").classList.remove("oculto");
+  $("#view-category").classList.add("oculto");
   editCategory(id);
-}
-let editCategory = (id) =>{
-  let close = false;
-  $('#edit-category-button').addEventListener('click', (e)=>{
-    let newCategory = $('#new-category-input').value;
-    if(!close){
-      categories.map((c)=>{
-        if(c.id===id){
-          c.name=newCategory
-        }
-      })
-    }
-    close=true;
+};
+
+let editCategory = (id) => {
+  $("#edit-category-button").addEventListener("click", () => {
+    let newCategory = $("#new-category-input").value;
+
+    categories.map((c) => {
+      if (c.id === id) {
+        c.name = newCategory;
+      }
+    });
+
     // vuelvo a la vista anterior
     generateCategories(categories);
-    $('#view-edit-category').classList.add('oculto');
-    $('#view-category').classList.remove('oculto');
-  })
-}
+    $("#view-edit-category").classList.add("oculto");
+    $("#view-category").classList.remove("oculto");
+  });
+};
 
+//Cancelar editar categoria
+let cancelEditCategory = () => {
+  $("#cancel-edit-category-button").addEventListener("click", () => {
+    $("#view-edit-category").classList.add("oculto");
+    $("#view-category").classList.remove("oculto");
+  });
+};
