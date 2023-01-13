@@ -185,7 +185,18 @@ let cleanInputOperation = () => {
 // Mostrar Operaciones
 const showOperations = (operations) => {
   $("#list-operations-container").innerHTML = " ";
+  
   for (let { id, description, amount, type, category, date } of operations) {
+    let classAmount;
+    let signo='';
+    if(type==="Gasto"){
+      classAmount = "has-text-danger";
+      signo = '-';
+    }
+    else if(type=="Ganancia"){
+      classAmount = "has-text-success";
+      signo = '';
+    }
     $("#list-operations-container").innerHTML += 
     `<div class="column is-3-tablet is-6-mobile">
         <span class="has-text-weight-semibold">
@@ -199,7 +210,10 @@ const showOperations = (operations) => {
         <span>${date}</span>
     </div>
     <div class="column is-2-tablet is-6-mobile">
-        <span>${amount}</span>
+        <span class=${classAmount}>
+            <span>${signo}$</span>
+            <span>${amount}</span>
+        </span>
     </div>
     <div class="column is-2-tablet is-6-mobile has-text-right-mobile">
             <p class="is-fullwidth">
@@ -207,6 +221,7 @@ const showOperations = (operations) => {
                 <a class=" is-size-7" onclick="deleteOperation(${id})">Eliminar</a>
             </p>
     </div>`;
+    
   }
 };
 
@@ -224,12 +239,13 @@ addNewOperation();
 //Cancelar Nueva Operacion
 let cancelNewOperation = () => {
   $('#cancel-new-operation-button').addEventListener('click', () =>{
+    cleanInputOperation();
     goToBalance()
   })
 }
 cancelNewOperation();
 
-//Verificar si hay operaciones y pone vista
+//Verificar si hay operaciones y poner vista
 let checkViewOperations = () => {
   if(operations.length){
     $('#without-operations-container').classList.add('is-hidden');
