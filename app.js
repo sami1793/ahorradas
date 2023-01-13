@@ -9,6 +9,8 @@ let goToBalance = () => {
 
   $("#view-balance-operation-filter").classList.remove("oculto");
   $("#view-new-operation").classList.add("oculto");
+
+  checkViewOperations();
 };
 
 let goToCategories = () => {
@@ -202,7 +204,7 @@ const showOperations = (operations) => {
     <div class="column is-2-tablet is-6-mobile has-text-right-mobile">
             <p class="is-fullwidth">
                 <a class=" is-size-7 mr-2 ">Editar</a>
-                <a class=" is-size-7">Eliminar</a>
+                <a class=" is-size-7" onclick="deleteOperation(${id})">Eliminar</a>
             </p>
     </div>`;
   }
@@ -226,6 +228,26 @@ let cancelNewOperation = () => {
   })
 }
 cancelNewOperation();
+
+//Verificar si hay operaciones y pone vista
+let checkViewOperations = () => {
+  if(operations.length){
+    $('#without-operations-container').classList.add('is-hidden');
+    $('#with-operations-container').classList.remove('is-hidden');
+  }
+  else{
+    $('#without-operations-container').classList.remove('is-hidden');
+    $('#with-operations-container').classList.add('is-hidden');
+  }
+}
+
+//Borrar Operacion
+let deleteOperation = (id) => {
+  operations = operations.filter((operation) => operation.id !== id);
+  console.log(operations);
+  showOperations(operations); //refrescar operaciones
+  checkViewOperations();
+}
 
 
 
