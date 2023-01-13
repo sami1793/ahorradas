@@ -181,28 +181,10 @@ let cleanInputOperation = () => {
 
 // Mostrar Operaciones
 const showOperations = (operations) => {
-  $("#with-operations-container").innerHTML = " ";
+  $("#list-operations-container").innerHTML = " ";
   for (let { id, description, amount, type, category, date } of operations) {
-    $("#with-operations-container").innerHTML += 
-    `<div class="columns is-centered has-text-weight-semibold is-hidden-mobile">
-    <div class="column is-3">
-        <span>Descripcion</span>
-    </div>
-    <div class="column is-3">
-        <span>Categoría</span>
-    </div>
-    <div class="column is-2">
-        <span>Fecha</span>
-    </div>
-    <div class="column is-2">
-        <span>Monto</span>
-    </div>
-    <div class="column is-2">
-        <span>Acciones</span>
-    </div>
-</div>
-<div class="columns is-multiline is-mobile is-vcentered">
-    <div class="column is-3-tablet is-6-mobile">
+    $("#list-operations-container").innerHTML += 
+    `<div class="column is-3-tablet is-6-mobile">
         <span class="has-text-weight-semibold">
         ${description}
         </span>
@@ -221,8 +203,7 @@ const showOperations = (operations) => {
                 <a class=" is-size-7 mr-2 ">Editar</a>
                 <a class=" is-size-7">Eliminar</a>
             </p>
-    </div>
-</div>`;
+    </div>`;
   }
 };
 
