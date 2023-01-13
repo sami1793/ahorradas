@@ -185,17 +185,21 @@ let cleanInputOperation = () => {
 // Mostrar Operaciones
 const showOperations = (operations) => {
   $("#list-operations-container").innerHTML = " ";
-  
+  let totalGanancias = 0;
+  let totalGastos = 0;
   for (let { id, description, amount, type, category, date } of operations) {
+    
     let classAmount;
-    let signo='';
+    let signo='+';
     if(type==="Gasto"){
       classAmount = "has-text-danger";
       signo = '-';
+      totalGastos += Number(amount) 
     }
     else if(type=="Ganancia"){
       classAmount = "has-text-success";
       signo = '';
+      totalGanancias += Number(amount)
     }
     $("#list-operations-container").innerHTML += 
     `<div class="column is-3-tablet is-6-mobile">
@@ -220,9 +224,9 @@ const showOperations = (operations) => {
                 <a class=" is-size-7 mr-2 ">Editar</a>
                 <a class=" is-size-7" onclick="deleteOperation(${id})">Eliminar</a>
             </p>
-    </div>`;
-    
+    </div>`;    
   }
+  showBalance(totalGastos, totalGanancias);
 };
 
 //Agregar Nueva operación
@@ -263,6 +267,12 @@ let deleteOperation = (id) => {
   console.log(operations);
   showOperations(operations); //refrescar operaciones
   checkViewOperations();
+}
+//Mostrar Balance
+let showBalance = (gastos, ganancias) =>{
+  $('#gastosBalance').innerHTML = gastos;
+  $('#gananciasBalance').innerHTML = ganancias;
+  $('#totalBalance').innerHTML = ganancias-gastos;
 }
 
 
