@@ -171,6 +171,7 @@ let addOperation = () => {
   });
 };
 
+//Limpiar inputs operaciones
 let cleanInputOperation = () => {
   $("#description-new-operation-input").value = "";
   $("#amount-new-operation-input").value = "";
@@ -207,7 +208,7 @@ const showOperations = (operations) => {
   }
 };
 
-
+//Agregar Nueva operación
 let addNewOperation = () => {
   $("#add-new-operation-button").addEventListener("click", () => {
     addOperation();
@@ -216,6 +217,15 @@ let addNewOperation = () => {
     goToBalance();
   });
 };
-
 addNewOperation();
+
+//Cancelar Nueva Operacion
+let cancelNewOperation = () => {
+  $('#cancel-new-operation-button').addEventListener('click', () =>{
+    goToBalance()
+  })
+}
+cancelNewOperation();
+
+
 
