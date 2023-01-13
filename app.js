@@ -123,11 +123,6 @@ let cancelEditCategory = () => {
 // **************************
 let operations = [];
 
-//Volver vista operaciones
-let returnViewOperation = () =>{
-
-}
-
 //Agregar operacion
 let addOperation = () =>{
   let descriptionInfo = $('#description-new-operation-input').value
@@ -136,7 +131,15 @@ let addOperation = () =>{
   let categoryInfo = $('#category-new-operation-input').value
   let dateInfo = $('#date-new-operation-input').value
 
+  let sizeOperations = operations.length;
+  let lastIdOperations;
+  if(sizeOperations>=1)
+    lastIdOperations = operations[sizeOperations - 1].id;
+  else 
+    lastIdOperations = 0;
+
   operations.push({
+    id: lastIdOperations + 1,
     description: descriptionInfo,
     amount: amountInfo,
     type : typeInfo,
