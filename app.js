@@ -143,9 +143,9 @@ let cancelEditCategory = () => {
   });
 };
 
-// **************************
-// ********OPERACIONES*******
-// **************************
+// *********************************
+// ********OPERACIONES**************
+// *********************************
 let operations = [];
 
 //Agregar operacion
@@ -180,12 +180,11 @@ let cleanInputOperation = () => {
 };
 
 // Mostrar Operaciones
-let showOperations = () => {
+const showOperations = (operations) => {
   $("#with-operations-container").innerHTML = " ";
   for (let { id, description, amount, type, category, date } of operations) {
-    $(
-      "#with-operations-container"
-    ).innerHTML += `<div class="columns is-centered has-text-weight-semibold is-hidden-mobile">
+    $("#with-operations-container").innerHTML += 
+    `<div class="columns is-centered has-text-weight-semibold is-hidden-mobile">
     <div class="column is-3">
         <span>Descripcion</span>
     </div>
@@ -227,11 +226,15 @@ let showOperations = () => {
   }
 };
 
+
 let addNewOperation = () => {
   $("#add-new-operation-button").addEventListener("click", () => {
     addOperation();
     cleanInputOperation();
-    showOperations();
+    showOperations(operations);
     goToBalance();
   });
 };
+
+addNewOperation();
+
