@@ -100,7 +100,7 @@
                                 <label class="label">Tipo</label>
                                 <div class="control">
                                     <div class="select is-fullwidth">
-                                        <select>
+                                        <select id="type-filter-input" class="filter-input">
                                             <option>Todos</option>
                                             <option>Gasto</option>
                                             <option>Ganancia</option>
@@ -112,7 +112,7 @@
                                 <label class="label">Categoria</label>
                                 <div class="control">
                                     <div class="select is-fullwidth">
-                                        <select>
+                                        <select id="category-filter-input" class="filter-input">
                                             <option>Todas</option>
                                             <option>Comida</option>
                                             <option>Servicio</option>
@@ -127,14 +127,14 @@
                             <div class="field">
                                 <label class="label">Desde</label>
                                 <div class="control">
-                                    <input class="input" type="date">
+                                    <input class="input" type="date" id="date-filter-input" class="filter-input">
                                 </div>
                             </div>
                             <div class="field">
                                 <label class="label">Ordenar por</label>
                                 <div class="control">
                                     <div class="select is-fullwidth">
-                                        <select>
+                                        <select id="order-filter-input" class="filter-input">
                                             <option>Más reciente</option>
                                             <option>Menos reciente</option>
                                             <option>Mayor monto</option>
@@ -384,6 +384,7 @@
 
     <script src="categorias.js"></script>
     <script src="app.js"></script>
+    <script src="filters.js"></script>
 </body>
 
 </html>

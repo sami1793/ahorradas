@@ -1,4 +1,5 @@
 const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => document.querySelectorAll(selector);
 
 //Funcionamiento nav balance/categorias/reportes
 
@@ -274,6 +275,8 @@ let showBalance = (gastos, ganancias) =>{
   $('#gananciasBalance').innerHTML = ganancias;
   $('#totalBalance').innerHTML = ganancias-gastos;
 }
+
+
 
 
 
