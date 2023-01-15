@@ -8,29 +8,29 @@ let filterCategory = (operations, category) =>{
 } 
 
 //Ejecutar Filtros
-let getOperationsModified = () => {
+let getOperationsFiltered = () => {
     let type = $('#type-filter-input').value;
     let category = $('#category-filter-input').value;
 
-    let operationsModified = operations;
+    let operationsFiltered = operations;
 
     if(type!=="Todos"){
-        operationsModified = filterType(operationsModified, type);
-        console.log(operationsModified)
+        operationsFiltered = filterType(operationsFiltered, type);
+        console.log(operationsFiltered)
     }
 
     if(category!=="Todas"){
-        operationsModified = filterCategory(operationsModified, category);
-        console.log(operationsModified)
+        operationsFiltered = filterCategory(operationsFiltered, category);
+        console.log(operationsFiltered)
     }
  
-    return operationsModified;
+    return operationsFiltered;
 }
 
 $('#type-filter-input').addEventListener('change', (e)=>{
-    showOperations(getOperationsModified());
+    showOperations(getOperationsFiltered());
 });
 
 $('#category-filter-input').addEventListener('change', (e)=>{
-    showOperations(getOperationsModified());
+    showOperations(getOperationsFiltered());
 });

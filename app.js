@@ -33,6 +33,18 @@ $("#balance-link").addEventListener("click", goToBalance);
 $("#categories-link").addEventListener("click", goToCategories);
 $("#reports-link").addEventListener("click", goToReports);
 
+//Fecha automatica
+let setDateToday = () =>{
+  let date = new Date();
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  console.log(`${year}-${month<10?"0"+month:month}-${day<10?"0"+day:day}`)
+  $('#date-filter-input').value = `${year}-${month<10?"0"+month:month}-${day<10?"0"+day:day}`
+}
+
+setDateToday ();
+
 // Funcionamiento menú burguer
 $("#navbar-burguer").addEventListener("click", () => {
   $("#navbar-burguer").classList.toggle("is-active");
