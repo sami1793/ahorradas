@@ -39,8 +39,8 @@ let setDateToday = () =>{
   let day = date.getDate();
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
-  console.log(`${year}-${month<10?"0"+month:month}-${day<10?"0"+day:day}`)
-  $('#date-filter-input').value = `${year}-${month<10?"0"+month:month}-${day<10?"0"+day:day}`
+  $('#date-filter-input').value = `${year}-${month<10?"0"+month:month}-${day<10?"0"+day:day}`;
+  $('#date-new-operation-input').value = `${year}-${month<10?"0"+month:month}-${day<10?"0"+day:day}`;
 }
 
 setDateToday ();
@@ -53,6 +53,7 @@ $("#navbar-burguer").addEventListener("click", () => {
 
 //Funcionamiento Nueva Operacion
 $("#new-operation-button").addEventListener("click", () => {
+  setDateToday ();
   $("#view-new-operation").classList.remove("oculto");
   $("#view-balance-operation-filter").classList.add("oculto");
 });
