@@ -290,6 +290,67 @@
             </div>
         </article>
 
+        <!-- Editar operación -->
+        <article class="container" id="view-edit-operation">
+            <div class="columns">
+                <div class="box container column is-12-mobile is-7-tablet-only is-7-desktop-only is-7-widescreen">
+                    <h2 class="title is-2 mb-6 has-text-weight-bold">Editar operación</h2>
+                    <div class="field">
+                        <label class="label">Descripción</label>
+                        <div class="control">
+                            <input class="input" id="description-new-operation-input" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Monto</label>
+                        <div class="control">
+                            <input class="input" type="number" id="amount-new-operation-input" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Tipo</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select id="type-new-operation-input">
+                                    <option>Gasto</option>
+                                    <option>Ganancia</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Categoría</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select id="category-new-operation-input" required>
+                                    <option>Comida</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Fecha</label>
+                        <div class="control">
+                            <input class="input" id="date-new-operation-input" type="date" required>
+                        </div>
+                    </div>
+                    <!-- Botones -->
+                    <div class="field is-grouped is-grouped-right mt-6">
+                        <p class="control">
+                            <a class="button is-light" id="cancel-new-operation-button">
+                                Cancelar
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a class="button is-primary" id="add-new-operation-button">
+                                Editar
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
     </section>
     <!-- *** [FIN BALANCE] *** -->
 
