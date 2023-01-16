@@ -11,6 +11,8 @@ let goToBalance = () => {
   $("#view-balance-operation-filter").classList.remove("oculto");
   $("#view-new-operation").classList.add("oculto");
 
+  $("#view-edit-operation").classList.add("oculto");
+
   checkViewOperations();
 };
 
@@ -67,6 +69,8 @@ $("#new-operation-button").addEventListener("click", () => {
   $("#view-new-operation").classList.remove("oculto");
   $("#view-balance-operation-filter").classList.add("oculto");
 });
+
+
 //Funcionamiento Ocultar Filtros
 $("#link-hide-filters").addEventListener("click", () => {
   $("#filter-container").classList.toggle("oculto");
@@ -215,13 +219,21 @@ let addOperation = () => {
   });
 };
 
-//Restear inputs operaciones
+//Resetear inputs operaciones
 let cleanInputOperation = () => {
   $("#description-new-operation-input").value = "";
   $("#amount-new-operation-input").value = 0;
   $("#type-new-operation-input").value = "Gasto";
-  // $("#category-new-operation-input").value = "";
+  // $("#category-edit-operation-input").value = "";
   setDateTodayNewOperation();
+};
+
+//Resetear inputs editar operaciones
+let cleanInputEditOperation = () => {
+  $("#description-edit-operation-input").value = "";
+  $("#amount-edit-operation-input").value = 0;
+  $("#type-edit-operation-input").value = "Gasto";
+  $("#category-edit-operation-input").value = getDateToday();
 };
 
 // Mostrar Operaciones
@@ -262,7 +274,7 @@ const showOperations = (operations) => {
     </div>
     <div class="column is-2-tablet is-6-mobile has-text-right-mobile">
             <p class="is-fullwidth">
-                <a class=" is-size-7 mr-2 ">Editar</a>
+                <a class=" is-size-7 mr-2 " onclick = "openEditOperation(${id})">Editar</a>
                 <a class=" is-size-7" onclick="deleteOperation(${id})">Eliminar</a>
             </p>
     </div>`;
@@ -290,6 +302,7 @@ let cancelNewOperation = () => {
 };
 cancelNewOperation();
 
+
 //Verificar si hay operaciones y poner vista
 let checkViewOperations = () => {
   if (operations.length) {
@@ -300,6 +313,77 @@ let checkViewOperations = () => {
     $("#with-operations-container").classList.add("is-hidden");
   }
 };
+
+//Funcionamiento Editar Operacion
+let openEditOperation = (id) => {
+  cleanInputEditOperation();
+  $("#view-edit-operation").classList.remove("oculto");
+  $("#view-balance-operation-filter").classList.add("oculto");
+
+  editOperation(id);
+};
+
+let editOperation = (id)=>{
+  let isClosedEditOperation = false;
+
+  $("#cancel-edit-operation-button").addEventListener("click", () => {
+    isClosedEditOperation = true;
+    cancelEditOperation();
+  });
+
+   //Prevengo por si hace click en el nav
+   $("#balance-link").addEventListener("click", () => {
+    isClosedEditOperation = true;
+  });
+  $("#categories-link").addEventListener("click", () => {
+    isClosedEditOperation = true;
+  });
+  $("#reports-link").addEventListener("click", () => {
+    isClosedEditOperation = true;
+  });
+
+  $("#add-edit-operation-button").addEventListener("click", functionEditOperation, {
+    once: true, //este atributo hace que solo se ejecute una vez
+  });
+
+  function functionEditOperation(e) {
+
+    //Actualizo valor en operaciones
+    if (!isClosedEditOperation) {
+
+      let newDescription = $('#description-edit-operation-input').value;
+      let newAmount = $('#amount-edit-operation-input').value;
+      let newType = $('#type-edit-operation-input').value;
+      let newCategory = $('#category-edit-operation-input').value;
+
+      operations.map((o) =>{
+        if(o.id === id){
+          o.description = newDescription;
+          o.amount = newAmount;
+          o.type = newType;
+          o.category = newCategory;
+
+          showOperations(operations)
+        }
+      })
+      
+    }
+    // vuelvo a la vista principal de Operaciones
+    // generateCategories(categories);
+    goToBalance();
+  }
+
+} 
+
+
+//Cancelar editar operacion
+let cancelEditOperation = () => {
+  $("#cancel-edit-operation-button").addEventListener("click", () => {
+    goToBalance();
+    // return true;
+  });
+};
+
 
 //Borrar Operacion
 let deleteOperation = (id) => {
