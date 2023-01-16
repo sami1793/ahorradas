@@ -34,23 +34,23 @@ $("#categories-link").addEventListener("click", goToCategories);
 $("#reports-link").addEventListener("click", goToReports);
 
 //Fecha automatica
-let getDateToday = () =>{
+let getDateToday = () => {
   let date = new Date();
   let day = date.getDate();
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
-  return `${year}-${month<10?"0"+month:month}-${day<10?"0"+day:day}`;
+  return `${year}-${month < 10 ? "0" + month : month}-${
+    day < 10 ? "0" + day : day
+  }`;
+};
 
-}
-
-let setDateTodayFilters = () =>{
-  $('#date-filter-input').value = getDateToday()
-}
+let setDateTodayFilters = () => {
+  $("#date-filter-input").value = getDateToday();
+};
 
 let setDateTodayNewOperation = () => {
-  $('#date-new-operation-input').value = getDateToday()
-}
-
+  $("#date-new-operation-input").value = getDateToday();
+};
 
 setDateTodayFilters();
 
@@ -75,7 +75,8 @@ $("#link-hide-filters").addEventListener("click", () => {
 // Mostrar las categorias del array
 const generateCategories = (categories) => {
   $("#container-categories").innerHTML = ""; //refresco el array
-  $("#category-new-operation-input").innerHTML = ""; //refresco el desplegable categories
+  $("#category-new-operation-input").innerHTML = ""; //refresco el desplegable categories de nueva operacion
+  $("#category-filter-input").innerHTML = "<option>Todas</option> "; //refresco el desplegable categorias de filtros
   for (let { name, id } of categories) {
     $("#container-categories").innerHTML += `<div class="level is-mobile">
         <span class="level-left tag is-primary is-light">${name}</span>
@@ -86,6 +87,7 @@ const generateCategories = (categories) => {
     </div>`;
     //Actualizo Desplegable Categorias
     $("#category-new-operation-input").innerHTML += `<option>${name}</option>`;
+    $("#category-filter-input").innerHTML += `<option>${name}</option>`;
   }
 };
 generateCategories(categories);
@@ -109,15 +111,19 @@ addCategory();
 //----Remover categoria------
 let deleteCategory = (id) => {
   categories = categories.filter((category) => category.id !== id);
-  console.log(categories);
   generateCategories(categories); //volver a mostrar categorias
 };
+
+let previousCategory;
 
 //----Editar categoria------
 let openEditCategory = (id) => {
   $("#new-category-input").value = "";
   $("#view-edit-category").classList.remove("oculto");
   $("#view-category").classList.add("oculto");
+  for (const category of categories) {
+    if (category.id === id) previousCategory = category.name;
+  }
   editCategory(id);
 };
 
@@ -145,9 +151,21 @@ let editCategory = (id) => {
   });
 
   function functionEditCategory(e) {
-    if (!isClosedEditCategory) {
-      let newCategory = $("#new-category-input").value;
 
+    let newCategory = $("#new-category-input").value;
+   
+   
+
+    //Actualizo valor en categorias
+    if (!isClosedEditCategory) {
+      //Actualizo valor en operaciones
+      operations.map((o) =>{
+        if(o.category === previousCategory){
+          console.log("entro");
+          o.category = newCategory
+          showOperations(operations)
+        }
+      })
       categories.map((c) => {
         if (c.id === id) {
           c.name = newCategory;
@@ -212,21 +230,20 @@ const showOperations = (operations) => {
   let totalGanancias = 0;
   let totalGastos = 0;
   for (let { id, description, amount, type, category, date } of operations) {
-    
     let classAmount;
-    let signo='+';
-    if(type==="Gasto"){
+    let signo = "+";
+    if (type === "Gasto") {
       classAmount = "has-text-danger";
-      signo = '-';
-      totalGastos += Number(amount) 
-    }
-    else if(type=="Ganancia"){
+      signo = "-";
+      totalGastos += Number(amount);
+    } else if (type == "Ganancia") {
       classAmount = "has-text-success";
-      signo = '';
-      totalGanancias += Number(amount)
+      signo = "";
+      totalGanancias += Number(amount);
     }
-    $("#list-operations-container").innerHTML += 
-    `<div class="column is-3-tablet is-6-mobile">
+    $(
+      "#list-operations-container"
+    ).innerHTML += `<div class="column is-3-tablet is-6-mobile">
         <span class="has-text-weight-semibold">
         ${description}
         </span>
@@ -248,7 +265,7 @@ const showOperations = (operations) => {
                 <a class=" is-size-7 mr-2 ">Editar</a>
                 <a class=" is-size-7" onclick="deleteOperation(${id})">Eliminar</a>
             </p>
-    </div>`;    
+    </div>`;
   }
   showBalance(totalGastos, totalGanancias);
 };
@@ -266,24 +283,23 @@ addNewOperation();
 
 //Cancelar Nueva Operacion
 let cancelNewOperation = () => {
-  $('#cancel-new-operation-button').addEventListener('click', () =>{
+  $("#cancel-new-operation-button").addEventListener("click", () => {
     cleanInputOperation();
-    goToBalance()
-  })
-}
+    goToBalance();
+  });
+};
 cancelNewOperation();
 
 //Verificar si hay operaciones y poner vista
 let checkViewOperations = () => {
-  if(operations.length){
-    $('#without-operations-container').classList.add('is-hidden');
-    $('#with-operations-container').classList.remove('is-hidden');
+  if (operations.length) {
+    $("#without-operations-container").classList.add("is-hidden");
+    $("#with-operations-container").classList.remove("is-hidden");
+  } else {
+    $("#without-operations-container").classList.remove("is-hidden");
+    $("#with-operations-container").classList.add("is-hidden");
   }
-  else{
-    $('#without-operations-container').classList.remove('is-hidden');
-    $('#with-operations-container').classList.add('is-hidden');
-  }
-}
+};
 
 //Borrar Operacion
 let deleteOperation = (id) => {
@@ -291,15 +307,10 @@ let deleteOperation = (id) => {
   console.log(operations);
   showOperations(operations); //refrescar operaciones
   checkViewOperations();
-}
+};
 //Mostrar Balance
-let showBalance = (gastos, ganancias) =>{
-  $('#gastosBalance').innerHTML = gastos;
-  $('#gananciasBalance').innerHTML = ganancias;
-  $('#totalBalance').innerHTML = ganancias-gastos;
-}
-
-
-
-
-
+let showBalance = (gastos, ganancias) => {
+  $("#gastosBalance").innerHTML = gastos;
+  $("#gananciasBalance").innerHTML = ganancias;
+  $("#totalBalance").innerHTML = ganancias - gastos;
+};
