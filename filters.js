@@ -16,11 +16,68 @@ let filterDate = (operations , date) =>{
     })
 }
 
+//Ordenar por monto menor mayor
+let orderByAmountAsc = (operations) =>{
+    return operations.sort((a,b) =>{
+        const amountA = a.amount;
+        const amountB = b.amount;
+        return amountA - amountB;
+    })
+}
+
+//Ordenar por monto mayor menor
+let orderByAmountDesc = (operations) =>{
+    return operations.sort((a,b) =>{
+        const amountA = a.amount;
+        const amountB = b.amount;
+        return amountB - amountA;
+    })
+}
+
+//Ordenar por menos reciente
+let orderByDateAsc = (operations) =>{
+    return operations.sort((a,b)=>{
+        let dateA = a.date;
+        dateA = (new Date (`${dateA} `)).getTime();
+        let dateB = b.date;
+        dateB = (new Date (`${dateB} `)).getTime();
+
+        return dateA-dateB;
+    })
+}
+
+//Ordenar por mas reciente
+let orderByDateDesc = (operations) =>{
+    return operations.sort((a,b)=>{
+        let dateA = a.date;
+        dateA = (new Date (`${dateA} `)).getTime();
+        let dateB = b.date;
+        dateB = (new Date (`${dateB} `)).getTime();
+
+        return dateB-dateA;
+    })
+}
+
+//Ordenar A/Z
+let orderAZ = (operations) =>{
+    return operations.sort((a,b)=>{
+        return a.description - b.description;
+    })
+}
+
+//Ordenar Z/A
+let orderZA = (operations) =>{
+    return operations.sort((a,b)=>{
+        return a.description - b.description;
+    })
+}
+
 //Ejecutar Filtros
 let getOperationsFiltered = () => {
     let type = $('#type-filter-input').value;
     let category = $('#category-filter-input').value;
     let date = $('#date-filter-input').value;
+    let order = $('#order-filter-input').value;
 
     let operationsFiltered = operations;
 
@@ -33,6 +90,26 @@ let getOperationsFiltered = () => {
     }
 
     operationsFiltered = filterDate(operationsFiltered, date)
+
+    switch(order){
+        case 'Más reciente':
+            operationsFiltered = orderByDateDesc(operationsFiltered);
+            break;
+        case 'Menos reciente':
+            operationsFiltered = orderByDateAsc(operationsFiltered);
+            break;
+        case 'Mayor monto':
+            operationsFiltered = orderByAmountDesc(operationsFiltered);
+            break;
+        case 'Menor monto':
+            operationsFiltered = orderByAmountAsc(operationsFiltered);
+            break;
+        case 'A/Z':
+            operationsFiltered = orderAZ(operationsFiltered);
+            break;
+        case 'Z/A':
+            operationsFiltered = orderZA(operationsFiltered);
+    }
  
     return operationsFiltered;
 }
@@ -46,10 +123,9 @@ $('#category-filter-input').addEventListener('change', (e)=>{
 });
 
 $('#date-filter-input').addEventListener('change', (e)=>{
-    showOperations(getOperationsFiltered())    
+    showOperations(getOperationsFiltered());    
 })
 
-// $('#date-new-operation-input').addEventListener('click', (e)=>{
-//     alert("funciona")
-//     console.log($('#date-new-operation-input').value)
-// })
+$('#order-filter-input').addEventListener('change', (e)=>{
+    showOperations(getOperationsFiltered());
+})

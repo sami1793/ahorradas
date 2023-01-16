@@ -34,16 +34,25 @@ $("#categories-link").addEventListener("click", goToCategories);
 $("#reports-link").addEventListener("click", goToReports);
 
 //Fecha automatica
-let setDateToday = () =>{
+let getDateToday = () =>{
   let date = new Date();
   let day = date.getDate();
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
-  $('#date-filter-input').value = `${year}-${month<10?"0"+month:month}-${day<10?"0"+day:day}`;
-  $('#date-new-operation-input').value = `${year}-${month<10?"0"+month:month}-${day<10?"0"+day:day}`;
+  return `${year}-${month<10?"0"+month:month}-${day<10?"0"+day:day}`;
+
 }
 
-setDateToday ();
+let setDateTodayFilters = () =>{
+  $('#date-filter-input').value = getDateToday()
+}
+
+let setDateTodayNewOperation = () => {
+  $('#date-new-operation-input').value = getDateToday()
+}
+
+
+setDateTodayFilters();
 
 // Funcionamiento menú burguer
 $("#navbar-burguer").addEventListener("click", () => {
@@ -53,7 +62,8 @@ $("#navbar-burguer").addEventListener("click", () => {
 
 //Funcionamiento Nueva Operacion
 $("#new-operation-button").addEventListener("click", () => {
-  setDateToday ();
+  setDateTodayNewOperation();
+  cleanInputOperation();
   $("#view-new-operation").classList.remove("oculto");
   $("#view-balance-operation-filter").classList.add("oculto");
 });
@@ -187,13 +197,13 @@ let addOperation = () => {
   });
 };
 
-//Limpiar inputs operaciones
+//Restear inputs operaciones
 let cleanInputOperation = () => {
   $("#description-new-operation-input").value = "";
-  $("#amount-new-operation-input").value = "";
-  $("#type-new-operation-input").value = "";
-  $("#category-new-operation-input").value = "";
-  $("#date-new-operation-input").value = "";
+  $("#amount-new-operation-input").value = 0;
+  $("#type-new-operation-input").value = "Gasto";
+  // $("#category-new-operation-input").value = "";
+  setDateTodayNewOperation();
 };
 
 // Mostrar Operaciones
