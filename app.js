@@ -229,11 +229,28 @@ let cleanInputOperation = () => {
 };
 
 //Resetear inputs editar operaciones
-let cleanInputEditOperation = () => {
-  $("#description-edit-operation-input").value = "";
-  $("#amount-edit-operation-input").value = 0;
-  $("#type-edit-operation-input").value = "Gasto";
-  $("#category-edit-operation-input").value = getDateToday();
+let cleanInputEditOperation = (id) => {
+  let previousDescription="";
+  let previousAmount="";
+  let previousType="";
+  let previousCategory="";
+  let previousDate="";
+
+  operations.map((o) =>{
+    if(o.id === id){
+      previousDescription = o.description;
+      previousAmount = o.amount;
+      previousType = o.type;
+      previousCategory = o.category;
+      previousDate = o.date;
+    }
+  })
+
+  $("#description-edit-operation-input").value = previousDescription;
+  $("#amount-edit-operation-input").value = previousAmount;
+  $("#type-edit-operation-input").value = previousType;
+  $("#category-edit-operation-input").value = previousCategory;
+  $("#date-edit-operation-input").value = previousDate;
 };
 
 // Mostrar Operaciones
@@ -316,7 +333,7 @@ let checkViewOperations = () => {
 
 //Funcionamiento Editar Operacion
 let openEditOperation = (id) => {
-  cleanInputEditOperation();
+  cleanInputEditOperation(id);
   $("#view-edit-operation").classList.remove("oculto");
   $("#view-balance-operation-filter").classList.add("oculto");
 
