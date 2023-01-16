@@ -80,6 +80,7 @@ $("#link-hide-filters").addEventListener("click", () => {
 const generateCategories = (categories) => {
   $("#container-categories").innerHTML = ""; //refresco el array
   $("#category-new-operation-input").innerHTML = ""; //refresco el desplegable categories de nueva operacion
+  $("#category-edit-operation-input").innerHTML = ""; //refresco el desplegable edit operaciones 
   $("#category-filter-input").innerHTML = "<option>Todas</option> "; //refresco el desplegable categorias de filtros
   for (let { name, id } of categories) {
     $("#container-categories").innerHTML += `<div class="level is-mobile">
@@ -91,6 +92,7 @@ const generateCategories = (categories) => {
     </div>`;
     //Actualizo Desplegable Categorias
     $("#category-new-operation-input").innerHTML += `<option>${name}</option>`;
+    $("#category-edit-operation-input").innerHTML += `<option>${name}</option>`;
     $("#category-filter-input").innerHTML += `<option>${name}</option>`;
   }
 };
