@@ -355,6 +355,7 @@ let editOperation = (id)=>{
       let newAmount = $('#amount-edit-operation-input').value;
       let newType = $('#type-edit-operation-input').value;
       let newCategory = $('#category-edit-operation-input').value;
+      let newDate = $("#date-edit-operation-input").value;
 
       operations.map((o) =>{
         if(o.id === id){
@@ -362,6 +363,7 @@ let editOperation = (id)=>{
           o.amount = newAmount;
           o.type = newType;
           o.category = newCategory;
+          o.date = newDate;
 
           showOperations(operations)
         }
