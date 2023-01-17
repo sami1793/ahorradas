@@ -1,4 +1,4 @@
-//Obtener Totales por Categorias
+//Obtener Totales
 let totalsOperations = (operations) =>{
     let totalGanancias = 0;
     let totalGastos = 0;
@@ -22,6 +22,7 @@ let totalsOperations = (operations) =>{
     }
 }
 
+//Obtener Totales por Categorias
 let getTotalsCategories = (operations)=>{
     let totalGastosCategory = 0;
     let totalGananciasCategory = 0;
@@ -46,8 +47,34 @@ let getTotalsCategories = (operations)=>{
     return totalsCategories;
 }
 
-//Mostrar totales por categorias
 
+//Obtener Totales por mes
+let getTotalsMonths = (operations) =>{
+    let months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    let totalGastosMes = 0;
+    let totalGananciasMes = 0;
+    let balanceMes= 0;
+    let totalsMonth = [];
+    let copyOperations = [...operations];
+
+    for (let month of months) {
+        total = totalsOperations(filterMonth(copyOperations, month));
+        totalGastosMes = total.totalGastos;
+        totalGananciasMes =  total.totalGanancias;
+        balanceMes = total.balance;
+
+        totalsMonth.push({
+            month : month,
+            totalGanancias: totalGananciasMes,
+            totalGastos: totalGastosMes,
+            balance: balanceMes
+        })
+    }
+
+    return totalsMonth;
+}
+
+//Mostrar totales por categorias
 let showTotalsCategories = (operations) =>{
     $('#total-category-container').innerHTML = " ";
     let totalsCategories = getTotalsCategories (operations);
@@ -71,8 +98,33 @@ let showTotalsCategories = (operations) =>{
     </div>`
     }
 }
-
 showTotalsCategories(operations);
+
+//Mostrar totales por mes
+let showTotalsMonths = (operations) =>{
+    $('#total-month-container').innerHTML = " ";
+    let totalsMonth = getTotalsMonths (operations);
+    for (const {month, totalGanancias, totalGastos, balance} of totalsMonth) {
+        $('#total-month-container').innerHTML += `<div class="columns">
+        <div class="column is-3">
+            <span class="has-text-weight-semibold">${month}</span>
+        </div>
+        <div class="column is-3 has-text-success">
+            <span>+$</span>
+            <span class="has-text-weight-semibold">${totalGanancias}</span>
+        </div>
+        <div class="column is-3 has-text-danger">
+            <span>-$</span>
+            <span class="has-text-weight-semibold">${totalGastos}</span>
+        </div>
+        <div class="column is-3">
+            <span>$</span>
+            <span class="has-text-weight-semibold">${balance}</span>
+        </div>
+    </div>`
+    }
+}
+showTotalsMonths(operations);
 
 //Mostrar Resumen
 let showResume = (operations) =>{
@@ -146,3 +198,4 @@ let showResume = (operations) =>{
 }
 
 showResume(operations);
+

@@ -16,6 +16,16 @@ let filterDate = (operations , date) =>{
     })
 }
 
+//Filtrar por mes
+let filterMonth = (operations, month) =>{
+    return operations.filter((operation) => {
+        let fecha = (new Date(`${operation.date} `) );
+        let mes = fecha.getMonth()+1;
+
+        return mes === month;
+    })
+}
+
 //Ordenar por monto menor mayor
 let orderByAmountAsc = (operations) =>{
     return operations.sort((a,b) =>{
