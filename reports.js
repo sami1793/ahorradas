@@ -47,3 +47,29 @@ let getTotalsCategories = (operations)=>{
 }
 
 //Mostrar totales por categorias
+
+let showTotalsCategories = (operations) =>{
+    $('#total-category-container').innerHTML = " ";
+    let totalsCategories = getTotalsCategories (operations);
+    for (const {category, totalGanancias, totalGastos, balance} of totalsCategories) {
+        $('#total-category-container').innerHTML += `<div class="columns">
+        <div class="column is-3">
+            <span class="tag is-primary is-light">${category}</span>
+        </div>
+        <div class="column is-3 has-text-success">
+            <span>+$</span>
+            <span class="has-text-weight-semibold">${totalGanancias}</span>
+        </div>
+        <div class="column is-3 has-text-danger">
+            <span>-$</span>
+            <span class="has-text-weight-semibold">${totalGastos}</span>
+        </div>
+        <div class="column is-3">
+            <span>$</span>
+            <span class="has-text-weight-semibold">${balance}</span>
+        </div>
+    </div>`
+    }
+}
+
+showTotalsCategories(operations);
