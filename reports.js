@@ -110,7 +110,10 @@ let showResume = (operations) =>{
         <div class="tag is-primary is-light">${categoryMayorGanancia}</div>
     </div>
     <div class="column is-4">
-        <div>${mayorGanancia}</div>
+        <div class="has-text-success">
+        <span>+$</span>
+        <span>${mayorGanancia}</span>
+        </div>
     </div>
 </div>
 
@@ -122,7 +125,10 @@ let showResume = (operations) =>{
         <div class="tag is-primary is-light">${categoryMayorGasto}</div>
     </div>
     <div class="column is-4">
-        <div>${mayorGasto}</div>
+        <div class="has-text-danger">
+            <span>-$</span>
+            <span>${mayorGasto}</span>
+        </div>
     </div>
 </div>
 
