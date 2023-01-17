@@ -73,3 +73,70 @@ let showTotalsCategories = (operations) =>{
 }
 
 showTotalsCategories(operations);
+
+//Mostrar Resumen
+let showResume = (operations) =>{
+    $('#resume-reports-container').innerHTML = " ";
+    let totalsCategories = getTotalsCategories (operations);
+    let mayorGanancia = 0;
+    let categoryMayorGanancia = "";
+    let mayorGasto = 0;
+    let categoryMayorGasto = "";
+    let mayorBalance = 0;
+    let categoryMayorBalance = "";
+    for (const {category, totalGanancias, totalGastos, balance} of totalsCategories) {
+        if(totalGanancias >= mayorGanancia){
+            mayorGanancia = totalGanancias;
+            categoryMayorGanancia = category;
+        }
+            
+        if(totalGastos >= mayorGasto){
+            mayorGasto = totalGastos;
+            categoryMayorGasto = category;
+        }
+            
+        if(balance >= mayorBalance){
+            mayorBalance = balance;
+            categoryMayorBalance = category;
+        }
+            
+    }
+    $('#resume-reports-container').innerHTML = 
+    `<div class="columns is-mobile">
+    <div class="column is-4 has-text-weight-semibold">
+        <div>Categoría con mayor ganancia</div>
+    </div>
+    <div class="column is-4">
+        <div class="tag is-primary is-light">${categoryMayorGanancia}</div>
+    </div>
+    <div class="column is-4">
+        <div>${mayorGanancia}</div>
+    </div>
+</div>
+
+<div class="columns is-mobile">
+    <div class="column is-4 has-text-weight-semibold">
+        <div>Categoría con mayor gasto</div>
+    </div>
+    <div class="column is-4">
+        <div class="tag is-primary is-light">${categoryMayorGasto}</div>
+    </div>
+    <div class="column is-4">
+        <div>${mayorGasto}</div>
+    </div>
+</div>
+
+<div class="columns is-mobile">
+    <div class="column is-4 has-text-weight-semibold">
+        <div>Categoría con mayor balance</div>
+    </div>
+    <div class="column is-4">
+        <div class="tag is-primary is-light">${categoryMayorBalance}</div>
+    </div>
+    <div class="column is-4">
+        <div>${mayorBalance}</div>
+    </div>
+</div>`
+}
+
+showResume(operations);
