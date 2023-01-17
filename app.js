@@ -29,6 +29,19 @@ let goToReports = () => {
   $("#view-balance").classList.add("oculto");
   $("#view-categories").classList.add("oculto");
   $("#view-reports").classList.remove("oculto");
+
+  if(operations.length>=4){
+    showTotalsCategories(operations);
+    showTotalsMonths(operations);
+    showResume(operations);
+
+    $('#with-reports').classList.remove('is-hidden');
+    $('#without-reports').classList.add('is-hidden');
+  }
+  else{
+    $('#with-reports').classList.add('is-hidden');
+    $('#without-reports').classList.remove('is-hidden');
+  }
 };
 
 $("#balance-link").addEventListener("click", goToBalance);
