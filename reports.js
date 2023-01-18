@@ -12,8 +12,9 @@ let totalsOperations = (operations) =>{
             totalGanancias += Number(amount);
         }
 
-        balance = totalGanancias - totalGastos;
     }
+
+    balance = totalGanancias - totalGastos;
 
     return {
         totalGanancias : totalGanancias,
@@ -145,33 +146,19 @@ let showTotalsMonths = (operations) =>{
 //Mostrar Resumen
 let showResume = (operations) =>{
     $('#resume-reports-container').innerHTML = " ";
+ 
+    //Obtener estadisticas por categorias
     let totalsCategories = getTotalsCategories (operations);
-    let mayorGanancia = 0;
-    let categoryMayorGanancia = "";
-    let mayorGasto = 0;
-    let categoryMayorGasto = "";
-    let mayorBalance = 0;
-    let categoryMayorBalance = "";
-    for (const {category, totalGanancias, totalGastos, balance} of totalsCategories) {
-        if(totalGanancias >= mayorGanancia){
-            mayorGanancia = totalGanancias;
-            categoryMayorGanancia = category;
-        }
-            
-        if(totalGastos >= mayorGasto){
-            mayorGasto = totalGastos;
-            categoryMayorGasto = category;
-        }
-            
-        if(balance >= mayorBalance){
-            mayorBalance = balance;
-            categoryMayorBalance = category;
-        }
-            
-    }
+
+    let mayorGananciaCategoria = getMayorGanancia(totalsCategories);
+    let mayorGastoCategoria = getMayorGasto(totalsCategories);
+    let mayorBalanceCategoria = getMayorBalance(totalsCategories);
+
     //Obtener estadisticas por mes
-    let mayorGananciaMes = getMayorGanancia (getTotalsMonths(operations));
-    let mayorGastoMes = getMayorGasto(getTotalsMonths(operations));
+    let totalsMonth = getTotalsMonths(operations);
+
+    let mayorGananciaMes = getMayorGanancia (totalsMonth);
+    let mayorGastoMes = getMayorGasto(totalsMonth);
 
     $('#resume-reports-container').innerHTML = 
     `<div class="columns is-mobile">
@@ -179,12 +166,12 @@ let showResume = (operations) =>{
         <div>Categoría con mayor ganancia</div>
     </div>
     <div class="column is-3">
-        <div class="tag is-primary is-light">${categoryMayorGanancia}</div>
+        <div class="tag is-primary is-light">${mayorGananciaCategoria.category}</div>
     </div>
     <div class="column is-3">
         <div class="has-text-success has-text-weight-semibold">
         <span>+$</span>
-        <span>${mayorGanancia}</span>
+        <span>${mayorGananciaCategoria.totalGanancias}</span>
         </div>
     </div>
 </div>
@@ -194,12 +181,12 @@ let showResume = (operations) =>{
         <div>Categoría con mayor gasto</div>
     </div>
     <div class="column is-3">
-        <div class="tag is-primary is-light">${categoryMayorGasto}</div>
+        <div class="tag is-primary is-light">${mayorGastoCategoria.category}</div>
     </div>
     <div class="column is-3">
         <div class="has-text-danger has-text-weight-semibold">
             <span>-$</span>
-            <span>${mayorGasto}</span>
+            <span>${mayorGastoCategoria.totalGastos}</span>
         </div>
     </div>
 </div>
@@ -209,12 +196,12 @@ let showResume = (operations) =>{
         <div>Categoría con mayor balance</div>
     </div>
     <div class="column is-3">
-        <div class="tag is-primary is-light">${categoryMayorBalance}</div>
+        <div class="tag is-primary is-light">${mayorBalanceCategoria.category}</div>
     </div>
     <div class="column is-3">
         <div class="has-text-weight-semibold">
             <span>$</span>
-            <span>${mayorBalance}</span>
+            <span>${mayorBalanceCategoria.balance}</span>
         </div>
     </div>
 </div>
@@ -258,7 +245,7 @@ let getMonth = (date) =>{
 
 //Obtener mayor ganancia
 let getMayorGanancia = (totals) =>{
-    let max = 0;
+    let max = totals[0].totalGanancias;
     return totals.reduce ( (acc, item) =>{        
         return item.totalGanancias>max?item:acc;
     })
@@ -266,8 +253,16 @@ let getMayorGanancia = (totals) =>{
 
 //Obtener mayor gasto
 let getMayorGasto = (totals) =>{
-    let max = 0;
+    let max = totals[0].totalGastos;
     return totals.reduce ( (acc, item) =>{        
         return item.totalGastos>max?item:acc;
+    })
+}
+
+//Obtener mayor balance
+let getMayorBalance = (totals) =>{
+    let max = totals[0].balance;
+    return totals.reduce ( (acc, item) =>{        
+        return item.balance>max?item:acc;
     })
 }
