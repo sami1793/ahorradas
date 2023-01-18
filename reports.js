@@ -47,10 +47,24 @@ let getTotalsCategories = (operations)=>{
     return totalsCategories;
 }
 
+//Obtener meses
+let getMonths = (operations) =>{
+    let months = [];
+
+     for (const operation of operations) {
+        if(!months.some((e)=>
+            e === getMonth(operation.date)
+        ))
+        {
+            months.push(getMonth(operation.date))
+        }
+     }
+     return months;
+}
 
 //Obtener Totales por mes
 let getTotalsMonths = (operations) =>{
-    let months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    let months = getMonths(operations);
     let totalGastosMes = 0;
     let totalGananciasMes = 0;
     let balanceMes= 0;
@@ -58,7 +72,7 @@ let getTotalsMonths = (operations) =>{
     let copyOperations = [...operations];
 
     for (let month of months) {
-        total = totalsOperations(filterMonth(copyOperations, month));
+        total = totalsOperations(filterMonthAAAMM(copyOperations, month));
         totalGastosMes = total.totalGastos;
         totalGananciasMes =  total.totalGanancias;
         balanceMes = total.balance;
@@ -74,18 +88,32 @@ let getTotalsMonths = (operations) =>{
     return totalsMonth;
 }
 
-let getTotalsMonths2 = (operations) =>{
-    let months = [];
-    let totalGastosMes = 0;
-    let totalGananciasMes = 0;
-    let balanceMes= 0;
-    let totalsMonth = [];
-    let copyOperations = [...operations];
+// //Obtener Totales por mes
+// let getTotalsMonths = (operations) =>{
+//     let months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+//     let totalGastosMes = 0;
+//     let totalGananciasMes = 0;
+//     let balanceMes= 0;
+//     let totalsMonth = [];
+//     let copyOperations = [...operations];
 
-    // for (const operation of operations) {
-        
-    // }
-}
+//     for (let month of months) {
+//         total = totalsOperations(filterMonth(copyOperations, month));
+//         totalGastosMes = total.totalGastos;
+//         totalGananciasMes =  total.totalGanancias;
+//         balanceMes = total.balance;
+
+//         totalsMonth.push({
+//             month : month,
+//             totalGanancias: totalGananciasMes,
+//             totalGastos: totalGastosMes,
+//             balance: balanceMes
+//         })
+//     }
+
+//     return totalsMonth;
+// }
+
 
 //Mostrar totales por categorias
 let showTotalsCategories = (operations) =>{

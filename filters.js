@@ -26,6 +26,15 @@ let filterMonth = (operations, month) =>{
     })
 }
 
+//Filtrar por mes formato AAAA-MM
+let filterMonthAAAMM = (operations, AAAAMMM ) =>{
+    return operations.filter((operation) =>{
+        let monthAAAAMM = operation.date.slice(0,7);
+
+        return monthAAAAMM === AAAAMMM;
+    })
+}
+
 //Ordenar por monto menor mayor
 let orderByAmountAsc = (operations) =>{
     return operations.sort((a,b) =>{
