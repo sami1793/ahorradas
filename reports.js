@@ -74,11 +74,25 @@ let getTotalsMonths = (operations) =>{
     return totalsMonth;
 }
 
+let getTotalsMonths2 = (operations) =>{
+    let months = [];
+    let totalGastosMes = 0;
+    let totalGananciasMes = 0;
+    let balanceMes= 0;
+    let totalsMonth = [];
+    let copyOperations = [...operations];
+
+    // for (const operation of operations) {
+        
+    // }
+}
+
 //Mostrar totales por categorias
 let showTotalsCategories = (operations) =>{
     $('#total-category-container').innerHTML = " ";
     let totalsCategories = getTotalsCategories (operations);
     for (const {category, totalGanancias, totalGastos, balance} of totalsCategories) {
+        //Mostrar solo los que tienen datos
         if(totalGastos!=0 || totalGanancias!=0)
         {
         $('#total-category-container').innerHTML += `<div class="columns">
@@ -199,6 +213,12 @@ let showResume = (operations) =>{
         </div>
     </div>
 </div>`
+}
+
+//Obtener mes MM/AAAA
+let getMonth = (date) =>{
+    dateSlice = date.slice(0,7)
+    return dateSlice;
 }
 
 
