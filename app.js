@@ -422,7 +422,6 @@ let cancelEditOperation = () => {
 //Borrar Operacion
 let deleteOperation = (id) => {
   operations = operations.filter((operation) => operation.id !== id);
-  console.log(operations);
   showOperations(operations); //refrescar operaciones
   checkViewOperations();
 };

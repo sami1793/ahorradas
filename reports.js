@@ -79,7 +79,7 @@ let showTotalsCategories = (operations) =>{
     $('#total-category-container').innerHTML = " ";
     let totalsCategories = getTotalsCategories (operations);
     for (const {category, totalGanancias, totalGastos, balance} of totalsCategories) {
-        if(totalGastos!=0 && totalGastos!=0)
+        if(totalGastos!=0 || totalGanancias!=0)
         {
         $('#total-category-container').innerHTML += `<div class="columns">
         <div class="column is-3">
@@ -101,7 +101,6 @@ let showTotalsCategories = (operations) =>{
     }
     }
 }
-showTotalsCategories(operations);
 
 //Mostrar totales por mes
 let showTotalsMonths = (operations) =>{
@@ -127,7 +126,6 @@ let showTotalsMonths = (operations) =>{
     </div>`
     }
 }
-showTotalsMonths(operations);
 
 //Mostrar Resumen
 let showResume = (operations) =>{
@@ -195,10 +193,12 @@ let showResume = (operations) =>{
         <div class="tag is-primary is-light">${categoryMayorBalance}</div>
     </div>
     <div class="column is-4">
-        <div>${mayorBalance}</div>
+        <div class="has-text-weight-semibold">
+            <span>$</span>
+            <span>${mayorBalance}</span>
+        </div>
     </div>
 </div>`
 }
 
-showResume(operations);
 
