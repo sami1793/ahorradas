@@ -243,8 +243,9 @@
                     <div class="field">
                         <label class="label">Monto</label>
                         <div class="control">
-                            <input class="input" type="number" id="amount-new-operation-input" required>
+                            <input class="input" type="number" min="1" id="amount-new-operation-input" required>
                         </div>
+                        <p class="help is-danger is-hidden" id="amount-new-operation-input-help">El monto debe ser mayor a cero</p>
                     </div>
                     <div class="field">
                         <label class="label">Tipo</label>

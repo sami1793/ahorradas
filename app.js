@@ -234,10 +234,11 @@ let addOperation = () => {
   });
 };
 
+
 //Resetear inputs operaciones
 let cleanInputOperation = () => {
   $("#description-new-operation-input").value = "";
-  $("#amount-new-operation-input").value = 0;
+  $("#amount-new-operation-input").value = 1;
   $("#type-new-operation-input").value = "Gasto";
   // $("#category-edit-operation-input").value = "";
   setDateTodayNewOperation();
@@ -431,3 +432,16 @@ let showBalance = (gastos, ganancias) => {
   $("#gananciasBalance").innerHTML = ganancias;
   $("#totalBalance").innerHTML = ganancias - gastos;
 };
+
+// -----Control de inputs------
+//Control inputs en Nueva Operacion
+$("#amount-new-operation-input").addEventListener('input', (e)=>{
+  if(e.target.value<1){
+    $('#amount-new-operation-input').classList.add('is-danger');
+    $('#amount-new-operation-input-help').classList.remove('is-hidden');
+  }
+  else{
+    $('#amount-new-operation-input').classList.remove('is-danger');
+    $('#amount-new-operation-input-help').classList.add('is-hidden');
+  }
+})
