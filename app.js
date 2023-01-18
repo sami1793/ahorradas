@@ -30,7 +30,7 @@ let goToReports = () => {
   $("#view-categories").classList.add("oculto");
   $("#view-reports").classList.remove("oculto");
 
-  if(operations.length>=4){
+  if(operations.length>=3){
     showTotalsCategories(operations);
     showTotalsMonths(operations);
     showResume(operations);

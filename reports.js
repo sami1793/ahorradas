@@ -47,7 +47,7 @@ let getTotalsCategories = (operations)=>{
     return totalsCategories;
 }
 
-//Obtener meses
+//Obtener meses AAAAMMM
 let getMonths = (operations) =>{
     let months = [];
 
@@ -87,33 +87,6 @@ let getTotalsMonths = (operations) =>{
 
     return totalsMonth;
 }
-
-// //Obtener Totales por mes
-// let getTotalsMonths = (operations) =>{
-//     let months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-//     let totalGastosMes = 0;
-//     let totalGananciasMes = 0;
-//     let balanceMes= 0;
-//     let totalsMonth = [];
-//     let copyOperations = [...operations];
-
-//     for (let month of months) {
-//         total = totalsOperations(filterMonth(copyOperations, month));
-//         totalGastosMes = total.totalGastos;
-//         totalGananciasMes =  total.totalGanancias;
-//         balanceMes = total.balance;
-
-//         totalsMonth.push({
-//             month : month,
-//             totalGanancias: totalGananciasMes,
-//             totalGastos: totalGastosMes,
-//             balance: balanceMes
-//         })
-//     }
-
-//     return totalsMonth;
-// }
-
 
 //Mostrar totales por categorias
 let showTotalsCategories = (operations) =>{
@@ -196,16 +169,20 @@ let showResume = (operations) =>{
         }
             
     }
+    //Obtener estadisticas por mes
+    let mayorGananciaMes = getMayorGanancia (getTotalsMonths(operations));
+    let mayorGastoMes = getMayorGasto(getTotalsMonths(operations));
+
     $('#resume-reports-container').innerHTML = 
     `<div class="columns is-mobile">
-    <div class="column is-4 has-text-weight-semibold">
+    <div class="column is-6 has-text-weight-semibold">
         <div>Categoría con mayor ganancia</div>
     </div>
-    <div class="column is-4">
+    <div class="column is-3">
         <div class="tag is-primary is-light">${categoryMayorGanancia}</div>
     </div>
-    <div class="column is-4">
-        <div class="has-text-success">
+    <div class="column is-3">
+        <div class="has-text-success has-text-weight-semibold">
         <span>+$</span>
         <span>${mayorGanancia}</span>
         </div>
@@ -213,14 +190,14 @@ let showResume = (operations) =>{
 </div>
 
 <div class="columns is-mobile">
-    <div class="column is-4 has-text-weight-semibold">
+    <div class="column is-6 has-text-weight-semibold">
         <div>Categoría con mayor gasto</div>
     </div>
-    <div class="column is-4">
+    <div class="column is-3">
         <div class="tag is-primary is-light">${categoryMayorGasto}</div>
     </div>
-    <div class="column is-4">
-        <div class="has-text-danger">
+    <div class="column is-3">
+        <div class="has-text-danger has-text-weight-semibold">
             <span>-$</span>
             <span>${mayorGasto}</span>
         </div>
@@ -228,16 +205,46 @@ let showResume = (operations) =>{
 </div>
 
 <div class="columns is-mobile">
-    <div class="column is-4 has-text-weight-semibold">
+    <div class="column is-6 has-text-weight-semibold">
         <div>Categoría con mayor balance</div>
     </div>
-    <div class="column is-4">
+    <div class="column is-3">
         <div class="tag is-primary is-light">${categoryMayorBalance}</div>
     </div>
-    <div class="column is-4">
+    <div class="column is-3">
         <div class="has-text-weight-semibold">
             <span>$</span>
             <span>${mayorBalance}</span>
+        </div>
+    </div>
+</div>
+
+<div class="columns is-mobile">
+    <div class="column is-6 has-text-weight-semibold">
+        <div>Mes con mayor ganancia</div>
+    </div>
+    <div class="column is-3 has-text-weight-semibold">
+        <div class="">${mayorGananciaMes.month}</div>
+    </div>
+    <div class="column is-3">
+        <div class="has-text-success has-text-weight-semibold">
+            <span>$</span>
+            <span>${mayorGananciaMes.totalGanancias}</span>
+        </div>
+    </div>
+</div>
+
+<div class="columns is-mobile">
+    <div class="column is-6 has-text-weight-semibold">
+        <div>Mes con mayor gasto</div>
+    </div>
+    <div class="column is-3 has-text-weight-semibold">
+        <div class="">${mayorGastoMes.month}</div>
+    </div>
+    <div class="column is-3">
+        <div class="has-text-danger has-text-weight-semibold">
+            <span>-$</span>
+            <span>${mayorGastoMes.totalGastos}</span>
         </div>
     </div>
 </div>`
@@ -249,4 +256,18 @@ let getMonth = (date) =>{
     return dateSlice;
 }
 
+//Obtener mayor ganancia
+let getMayorGanancia = (totals) =>{
+    let max = 0;
+    return totals.reduce ( (acc, item) =>{        
+        return item.totalGanancias>max?item:acc;
+    })
+}
 
+//Obtener mayor gasto
+let getMayorGasto = (totals) =>{
+    let max = 0;
+    return totals.reduce ( (acc, item) =>{        
+        return item.totalGastos>max?item:acc;
+    })
+}
