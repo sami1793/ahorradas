@@ -316,15 +316,15 @@ const showOperations = (operations) => {
 };
 
 //Agregar Nueva operación
-let addNewOperation = () => {
-  $("#add-new-operation-button").addEventListener("click", () => {
+$("#add-new-operation-button").addEventListener("click", () => {
+    // $('#add-new-operation-form').addEventListener("submit", (e)=>{
     addOperation();
     cleanInputOperation();
     showOperations(operations);
     goToBalance();
-  });
-};
-addNewOperation();
+    // e.preventDefalut();
+});
+
 
 //Cancelar Nueva Operacion
 let cancelNewOperation = () => {
@@ -443,5 +443,39 @@ $("#amount-new-operation-input").addEventListener('input', (e)=>{
   else{
     $('#amount-new-operation-input').classList.remove('is-danger');
     $('#amount-new-operation-input-help').classList.add('is-hidden');
+  }
+})
+
+$("#description-new-operation-input").addEventListener('input', (e)=>{
+  if(e.target.value<1){
+    $('#description-new-operation-input').classList.add('is-danger');
+    $('#description-new-operation-input-help').classList.remove('is-hidden');
+  }
+  else{
+    $('#description-new-operation-input').classList.remove('is-danger');
+    $('#description-new-operation-input-help').classList.add('is-hidden');
+  }
+})
+
+//Control inputs en Editar Operacion
+$("#amount-edit-operation-input").addEventListener('input', (e)=>{
+  if(e.target.value<1){
+    $('#amount-edit-operation-input').classList.add('is-danger');
+    $('#amount-edit-operation-input-help').classList.remove('is-hidden');
+  }
+  else{
+    $('#amount-edit-operation-input').classList.remove('is-danger');
+    $('#amount-edit-operation-input-help').classList.add('is-hidden');
+  }
+})
+
+$("#description-edit-operation-input").addEventListener('input', (e)=>{
+  if(!e.target.value){
+    $('#description-edit-operation-input').classList.add('is-danger');
+    $('#description-edit-operation-input-help').classList.remove('is-hidden');
+  }
+  else{
+    $('#description-edit-operation-input').classList.remove('is-danger');
+    $('#description-edit-operation-input-help').classList.add('is-hidden');
   }
 })

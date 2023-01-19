@@ -233,60 +233,63 @@
         <article class="container oculto" id="view-new-operation">
             <div class="columns">
                 <div class="box container column is-12-mobile is-7-tablet-only is-7-desktop-only is-7-widescreen">
-                    <h2 class="title is-2 mb-6 has-text-weight-bold">Nueva operación</h2>
-                    <div class="field">
-                        <label class="label">Descripción</label>
-                        <div class="control">
-                            <input class="input" id="description-new-operation-input" required>
+                    <!-- <form id="add-new-operation-form"> -->
+                        <h2 class="title is-2 mb-6 has-text-weight-bold">Nueva operación</h2>
+                        <div class="field">
+                            <label class="label">Descripción</label>
+                            <div class="control">
+                                <input class="input" id="description-new-operation-input">
+                            </div>
+                            <p class="help is-danger is-hidden" id="description-new-operation-input-help">Este campo no puede estar vacío</p>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">Monto</label>
-                        <div class="control">
-                            <input class="input" type="number" min="1" id="amount-new-operation-input" required>
+                        <div class="field">
+                            <label class="label">Monto</label>
+                            <div class="control">
+                                <input class="input" type="number" min="1" id="amount-new-operation-input">
+                            </div>
+                            <p class="help is-danger is-hidden" id="amount-new-operation-input-help">El monto debe ser mayor a cero</p>
                         </div>
-                        <p class="help is-danger is-hidden" id="amount-new-operation-input-help">El monto debe ser mayor a cero</p>
-                    </div>
-                    <div class="field">
-                        <label class="label">Tipo</label>
-                        <div class="control">
-                            <div class="select is-fullwidth">
-                                <select id="type-new-operation-input">
-                                    <option>Gasto</option>
-                                    <option>Ganancia</option>
-                                </select>
+                        <div class="field">
+                            <label class="label">Tipo</label>
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select id="type-new-operation-input">
+                                        <option>Gasto</option>
+                                        <option>Ganancia</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">Categoria</label>
-                        <div class="control">
-                            <div class="select is-fullwidth">
-                                <select id="category-new-operation-input" required>
-                                    <option>Comida</option>
-                                </select>
+                        <div class="field">
+                            <label class="label">Categoria</label>
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select id="category-new-operation-input">
+                                        <option>Comida</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label class="label">Fecha</label>
-                        <div class="control">
-                            <input class="input" id="date-new-operation-input" type="date" required>
+                        <div class="field">
+                            <label class="label">Fecha</label>
+                            <div class="control">
+                                <input class="input" id="date-new-operation-input" type="date">
+                            </div>
                         </div>
-                    </div>
-                    <!-- Botones -->
-                    <div class="field is-grouped is-grouped-right mt-6">
-                        <p class="control">
-                            <a class="button is-light" id="cancel-new-operation-button">
-                                Cancelar
-                            </a>
-                        </p>
-                        <p class="control">
-                            <a class="button is-primary" id="add-new-operation-button">
-                                Agregar
-                            </a>
-                        </p>
-                    </div>
+                        <!-- Botones -->
+                        <div class="field is-grouped is-grouped-right mt-6">
+                            <p class="control">
+                                <button class="button is-light" id="cancel-new-operation-button">
+                                    Cancelar
+                                </button>
+                            </p>
+                            <p class="control">
+                                <button class="button is-primary" id="add-new-operation-button">
+                                    Agregar
+                                </button>
+                            </p>
+                        </div>
+                    <!-- </form> -->
                 </div>
             </div>
         </article>
@@ -301,12 +304,14 @@
                         <div class="control">
                             <input class="input" id="description-edit-operation-input" required>
                         </div>
+                        <p class="help is-danger is-hidden" id="description-edit-operation-input-help">Este campo no puede estar vacío</p>
                     </div>
                     <div class="field">
                         <label class="label">Monto</label>
                         <div class="control">
-                            <input class="input" type="number" id="amount-edit-operation-input" required>
+                            <input class="input" type="number" min="1" id="amount-edit-operation-input" required>
                         </div>
+                        <p class="help is-danger is-hidden" id="amount-edit-operation-input-help">El monto debe ser mayor a cero</p>
                     </div>
                     <div class="field">
                         <label class="label">Tipo</label>
