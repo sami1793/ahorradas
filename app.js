@@ -82,14 +82,6 @@ $("#new-operation-button").addEventListener("click", () => {
   $("#view-new-operation").classList.remove("oculto");
   $("#view-balance-operation-filter").classList.add("oculto");
 
-  $('#description-new-operation-input-help').classList.remove('is-hidden');
-  $('#amount-new-operation-input-help').classList.remove('is-hidden');
-
-  $('#description-new-operation-input').classList.add('is-danger');
-  $('#amount-new-operation-input').classList.add('is-danger');
-
-  $('#add-new-operation-button').disabled = true;
-
 });
 
 
@@ -246,10 +238,9 @@ let addOperation = () => {
 
 //Resetear inputs operaciones
 let cleanInputOperation = () => {
-  $("#description-new-operation-input").value = "";
-  $("#amount-new-operation-input").value = 0;
+  $("#description-new-operation-input").value = "Descripción..";
+  $("#amount-new-operation-input").value = 100;
   $("#type-new-operation-input").value = "Gasto";
-  // $("#category-edit-operation-input").value = "";
   setDateTodayNewOperation();
 };
 
@@ -480,10 +471,14 @@ $("#amount-edit-operation-input").addEventListener('input', (e)=>{
   if(e.target.value<1){
     $('#amount-edit-operation-input').classList.add('is-danger');
     $('#amount-edit-operation-input-help').classList.remove('is-hidden');
+    $('#add-edit-operation-button').disabled = true;
   }
   else{
     $('#amount-edit-operation-input').classList.remove('is-danger');
     $('#amount-edit-operation-input-help').classList.add('is-hidden');
+    if($("#description-edit-operation-input").value){
+      $('#add-edit-operation-button').disabled = false;
+    }
   }
 })
 
@@ -491,9 +486,13 @@ $("#description-edit-operation-input").addEventListener('input', (e)=>{
   if(!e.target.value){
     $('#description-edit-operation-input').classList.add('is-danger');
     $('#description-edit-operation-input-help').classList.remove('is-hidden');
+    $('#add-edit-operation-button').disabled = true;
   }
   else{
     $('#description-edit-operation-input').classList.remove('is-danger');
     $('#description-edit-operation-input-help').classList.add('is-hidden');
+    if($("#amount-edit-operation-input").value>=1){
+      $('#add-edit-operation-button').disabled = false;
+    }
   }
 })
