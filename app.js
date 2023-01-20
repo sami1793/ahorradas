@@ -82,6 +82,15 @@ $("#new-operation-button").addEventListener("click", () => {
   $("#view-new-operation").classList.remove("oculto");
   $("#view-balance-operation-filter").classList.add("oculto");
 
+  $('#description-new-operation-input-help').classList.add('is-hidden');
+  $('#amount-new-operation-input-help').classList.add('is-hidden');
+
+  $('#description-new-operation-input').classList.remove('is-danger');
+  $('#amount-new-operation-input').classList.remove('is-danger');
+
+  $('#add-new-operation-button').disabled = false;
+
+
 });
 
 
