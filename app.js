@@ -1,6 +1,86 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
+// ----Cargo LOCAL STORAGE-----
+// Categorias
+if(localStorage.getItem('categories')){
+  categories = JSON.parse(localStorage.getItem('categories'));
+}
+// Operaciones
+let operations = [];
+
+if(localStorage.getItem('operations')){
+  operations = JSON.parse(localStorage.getItem('operations'));
+}
+
+// Mostrar Operaciones
+const showOperations = (operations) => {
+  $("#list-operations-container").innerHTML = " ";
+  let totalGanancias = 0;
+  let totalGastos = 0;
+  for (let { id, description, amount, type, category, date } of operations) {
+    let classAmount;
+    let signo = "+";
+    if (type === "Gasto") {
+      classAmount = "has-text-danger";
+      signo = "-";
+      totalGastos += Number(amount);
+    } else if (type == "Ganancia") {
+      classAmount = "has-text-success";
+      signo = "";
+      totalGanancias += Number(amount);
+    }
+    $(
+      "#list-operations-container"
+    ).innerHTML += `<div class="column is-3-tablet is-6-mobile">
+        <span class="has-text-weight-semibold">
+        ${description}
+        </span>
+    </div>
+    <div class="column is-3-tablet is-6-mobile has-text-right-mobile">
+        <span class="tag is-primary is-light">${category}</span>
+    </div>
+    <div class="column is-2-tablet is-hidden-mobile">
+        <span>${date}</span>
+    </div>
+    <div class="column is-2-tablet is-6-mobile">
+        <span class=${classAmount}>
+            <span>${signo}$</span>
+            <span>${amount}</span>
+        </span>
+    </div>
+    <div class="column is-2-tablet is-6-mobile has-text-right-mobile">
+            <p class="is-fullwidth">
+                <a class=" is-size-7 mr-2 " onclick = "openEditOperation(${id})">Editar</a>
+                <a class=" is-size-7" onclick="deleteOperation(${id})">Eliminar</a>
+            </p>
+    </div>`;
+  }
+  showBalance(totalGastos, totalGanancias);
+};
+
+//Mostrar Balance
+let showBalance = (gastos, ganancias) => {
+  $("#gastosBalance").innerHTML = gastos;
+  $("#gananciasBalance").innerHTML = ganancias;
+  $("#totalBalance").innerHTML = ganancias - gastos;
+};
+
+//Verificar si hay operaciones y poner vistas
+showOperations(operations);
+let checkViewOperations = () => {
+  if (operations.length) {
+    $("#without-operations-container").classList.add("is-hidden");
+    $("#with-operations-container").classList.remove("is-hidden");
+  } else {
+    $("#without-operations-container").classList.remove("is-hidden");
+    $("#with-operations-container").classList.add("is-hidden");
+  }
+};
+
+
+checkViewOperations();
+
 //Funcionamiento nav balance/categorias/reportes
 
 let goToBalance = () => {
@@ -132,6 +212,8 @@ let addCategory = () => {
     });
     generateCategories(categories); //vuelvo a mostrar categorias
     $("#category-input").value = "";
+    //Guardar cambio en Local Storage 
+    updateCategoriesLocalStorage(categories);
   });
 };
 
@@ -140,6 +222,9 @@ addCategory();
 //----Remover categoria------
 let deleteCategory = (id) => {
   categories = categories.filter((category) => category.id !== id);
+  //Actualizo el Local Storage luego del borrado
+  updateCategoriesLocalStorage(categories);
+
   generateCategories(categories); //volver a mostrar categorias
 };
 
@@ -181,9 +266,7 @@ let editCategory = (id) => {
 
   function functionEditCategory(e) {
 
-    let newCategory = $("#new-category-input").value;
-   
-   
+    let newCategory = $("#new-category-input").value;   
 
     //Actualizo valor en categorias
     if (!isClosedEditCategory) {
@@ -200,6 +283,11 @@ let editCategory = (id) => {
           c.name = newCategory;
         }
       });
+      //Actualizo categorias en Local Storage
+      updateCategoriesLocalStorage(categories);
+
+      //Actualizo Operaciones en Local Storage
+      updateOperationsLocalStorage(operations);
     }
 
     // vuelvo a la vista principal de Categorias
@@ -219,7 +307,7 @@ let cancelEditCategory = () => {
 // *********************************
 // ********OPERACIONES**************
 // *********************************
-let operations = [];
+
 
 //Agregar operacion
 let addOperation = () => {
@@ -242,6 +330,9 @@ let addOperation = () => {
     category: categoryInfo,
     date: dateInfo,
   });
+
+  //Actualizar Operaciones en Local Storage
+  updateOperationsLocalStorage(operations);
 };
 
 
@@ -278,51 +369,6 @@ let cleanInputEditOperation = (id) => {
   $("#date-edit-operation-input").value = previousDate;
 };
 
-// Mostrar Operaciones
-const showOperations = (operations) => {
-  $("#list-operations-container").innerHTML = " ";
-  let totalGanancias = 0;
-  let totalGastos = 0;
-  for (let { id, description, amount, type, category, date } of operations) {
-    let classAmount;
-    let signo = "+";
-    if (type === "Gasto") {
-      classAmount = "has-text-danger";
-      signo = "-";
-      totalGastos += Number(amount);
-    } else if (type == "Ganancia") {
-      classAmount = "has-text-success";
-      signo = "";
-      totalGanancias += Number(amount);
-    }
-    $(
-      "#list-operations-container"
-    ).innerHTML += `<div class="column is-3-tablet is-6-mobile">
-        <span class="has-text-weight-semibold">
-        ${description}
-        </span>
-    </div>
-    <div class="column is-3-tablet is-6-mobile has-text-right-mobile">
-        <span class="tag is-primary is-light">${category}</span>
-    </div>
-    <div class="column is-2-tablet is-hidden-mobile">
-        <span>${date}</span>
-    </div>
-    <div class="column is-2-tablet is-6-mobile">
-        <span class=${classAmount}>
-            <span>${signo}$</span>
-            <span>${amount}</span>
-        </span>
-    </div>
-    <div class="column is-2-tablet is-6-mobile has-text-right-mobile">
-            <p class="is-fullwidth">
-                <a class=" is-size-7 mr-2 " onclick = "openEditOperation(${id})">Editar</a>
-                <a class=" is-size-7" onclick="deleteOperation(${id})">Eliminar</a>
-            </p>
-    </div>`;
-  }
-  showBalance(totalGastos, totalGanancias);
-};
 
 //Agregar Nueva operación
 $("#add-new-operation-button").addEventListener("click", () => {
@@ -344,17 +390,6 @@ let cancelNewOperation = () => {
 };
 cancelNewOperation();
 
-
-//Verificar si hay operaciones y poner vista
-let checkViewOperations = () => {
-  if (operations.length) {
-    $("#without-operations-container").classList.add("is-hidden");
-    $("#with-operations-container").classList.remove("is-hidden");
-  } else {
-    $("#without-operations-container").classList.remove("is-hidden");
-    $("#with-operations-container").classList.add("is-hidden");
-  }
-};
 
 //Funcionamiento Editar Operacion
 let openEditOperation = (id) => {
@@ -410,6 +445,9 @@ let editOperation = (id)=>{
           showOperations(operations)
         }
       })
+
+      //Actualizar operaciones en Local Storage
+      updateOperationsLocalStorage(operations)
       
     }
     // vuelvo a la vista principal de Operaciones
@@ -432,15 +470,14 @@ let cancelEditOperation = () => {
 //Borrar Operacion
 let deleteOperation = (id) => {
   operations = operations.filter((operation) => operation.id !== id);
+
+  //Actualizar Operaciones en Local Storage
+  updateOperationsLocalStorage(operations)
+
   showOperations(operations); //refrescar operaciones
   checkViewOperations();
 };
-//Mostrar Balance
-let showBalance = (gastos, ganancias) => {
-  $("#gastosBalance").innerHTML = gastos;
-  $("#gananciasBalance").innerHTML = ganancias;
-  $("#totalBalance").innerHTML = ganancias - gastos;
-};
+
 
 // -----Control de inputs------
 //Control inputs en Nueva Operacion
@@ -505,3 +542,14 @@ $("#description-edit-operation-input").addEventListener('input', (e)=>{
     }
   }
 })
+
+
+// -----------LOCAL STORAGE-------------
+const updateCategoriesLocalStorage = (categories) =>{
+  localStorage.setItem('categories', JSON.stringify(categories));
+  // const categoriesLocalStorage = JSON.parse(localStorage.getItem("categories"));
+}
+
+const updateOperationsLocalStorage = (operations) =>{
+  localStorage.setItem('operations', JSON.stringify(operations));
+}
