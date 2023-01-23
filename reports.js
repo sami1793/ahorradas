@@ -97,7 +97,7 @@ let showTotalsCategories = (operations) =>{
         //Mostrar solo los que tienen datos
         if(totalGastos!=0 || totalGanancias!=0)
         {
-        $('#total-category-container').innerHTML += `<div class="columns">
+        $('#total-category-container').innerHTML += `<div class="columns is-mobile">
         <div class="column is-3">
             <span class="tag is-primary is-light">${category}</span>
         </div>
@@ -123,7 +123,7 @@ let showTotalsMonths = (operations) =>{
     $('#total-month-container').innerHTML = " ";
     let totalsMonth = getTotalsMonths (operations);
     for (const {month, totalGanancias, totalGastos, balance} of totalsMonth) {
-        $('#total-month-container').innerHTML += `<div class="columns">
+        $('#total-month-container').innerHTML += `<div class="columns is-mobile">
         <div class="column is-3">
             <span class="has-text-weight-semibold">${month}</span>
         </div>
