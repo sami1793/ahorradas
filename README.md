@@ -15,4 +15,4 @@ Para el estilado se utilizó el framework [Bulma](https://bulma.io/)
 ## Deploy 🚀
 En el siguiente enlace podes comenzar a llevar un control de tus gastos 🙌🏼:
 
-👉🏼 [AhorrADAs](https://sami1793.github.io/editor-memes/)
+👉🏼 [AhorrADAs](https://sami1793.github.io/ahorradas/)
