@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -423,123 +423,125 @@
     <!--*************************
                REPORTES       
     ***************************** -->
-    <section class="container m-6 oculto" id="view-reports">
-        <div class="columns is-centered">
-            <!-- ***BOX REPORTES*** -->
-            <div class="column box is-12-touch is-9-desktop-only is-8-widescreen p-6">
-                    <h2 class="title is-2 has-text-weight-bold mt-5">Reportes</h2>
-                    <div id="without-reports">
-                        <div class="mb-6 mt-6">
-                            <div class="block mb-6">
-                                <figure class="image is-2by1">
-                                    <img src="assets/images/projections.svg" alt="imagen de dinero">
-                                </figure>
-                            </div>
-                            <div class="block has-text-centered">
-                                <h3 class="title is-size-4">Operaciones insuficientes</h3>
-                                <p class="subtilte">Prueba agregando más operaciones</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="with-reports" class="is-hidden">
-                        <div class="resume-reports mt-6">
-                            <h3 class="title is-4 has-text-weight-semibold">Resumen</h3>
-                            <div id="resume-reports-container">
-                                <div class="columns is-mobile">
-                                    <div class="column is-4 has-text-weight-semibold">
-                                        <div>Categoría con mayor ganancia</div>
-                                        <div>Categoría con mayor gasto</div>
-                                        <div>Categoría con mayor balance</div>
-                                    </div>
-                                    <div class="column is-4">
-                                        <div>Categoría</div>
-                                        <div>Categoría</div>
-                                        <div>Categoría</div>
-                                    </div>
-                                    <div class="column is-4">
-                                        <div>Monto</div>
-                                        <div>Monto</div>
-                                        <div>Monto</div>
-                                    </div>
+    <section class="container mt-5 mb-5 oculto" id="view-reports">
+        <!-- <div class="box"> -->
+            <div class="columns is-centered">
+                <!-- ***BOX REPORTES*** -->
+                <div class="column box is-narrow-touch is-9-desktop-only is-8-widescreen">
+                        <h2 class="title is-2 has-text-weight-bold mt-5">Reportes</h2>
+                        <div id="without-reports">
+                            <div class="mb-6 mt-6">
+                                <div class="block mb-6">
+                                    <figure class="image is-2by1">
+                                        <img src="assets/images/projections.svg" alt="imagen de dinero">
+                                    </figure>
+                                </div>
+                                <div class="block has-text-centered">
+                                    <h3 class="title is-size-4">Operaciones insuficientes</h3>
+                                    <p class="subtilte">Prueba agregando más operaciones</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="total-category mt-6">
-                            <h3 class="title is-4 has-text-weight-semibold">Totales por categorías</h3>
-                            <div class="title-totals-categories columns is-mobile">
-                                <div class="column is-3">
-                                    <span class="has-text-weight-semibold">Categoría</span>
-                                </div>
-                                <div class="column is-3">
-                                    <span class="has-text-weight-semibold">Ganancias</span>
-                                </div>
-                                <div class="column is-3">
-                                    <span class="has-text-weight-semibold">Gastos</span>
-                                </div>
-                                <div class="column is-3">
-                                    <span class="has-text-weight-semibold">Balance</span>
+                        <div id="with-reports" class="is-hidden">
+                            <div class="resume-reports mt-5">
+                                <h3 class="title is-4 has-text-weight-semibold">Resumen</h3>
+                                <div id="resume-reports-container">
+                                    <div class="columns is-mobile">
+                                        <div class="column is-4 has-text-weight-semibold">
+                                            <div>Categoría con mayor ganancia</div>
+                                            <div>Categoría con mayor gasto</div>
+                                            <div>Categoría con mayor balance</div>
+                                        </div>
+                                        <div class="column is-4">
+                                            <div>Categoría</div>
+                                            <div>Categoría</div>
+                                            <div>Categoría</div>
+                                        </div>
+                                        <div class="column is-4">
+                                            <div>Monto</div>
+                                            <div>Monto</div>
+                                            <div>Monto</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div id="total-category-container">
-                                <div class="columns">
+                            <div class="total-category mt-6">
+                                <h3 class="title is-4 has-text-weight-semibold">Totales por categorías</h3>
+                                <div class="title-totals-categories columns is-mobile">
                                     <div class="column is-3">
-                                        <span class="tag is-primary is-light">Categoría</span>
+                                        <span class="has-text-weight-semibold">Categoría</span>
                                     </div>
-                                    <div class="column is-3 has-text-success">
-                                        <span>+$</span>
+                                    <div class="column is-3">
                                         <span class="has-text-weight-semibold">Ganancias</span>
                                     </div>
-                                    <div class="column is-3 has-text-danger">
-                                        <span>-$</span>
+                                    <div class="column is-3">
                                         <span class="has-text-weight-semibold">Gastos</span>
                                     </div>
                                     <div class="column is-3">
-                                        <span>$</span>
                                         <span class="has-text-weight-semibold">Balance</span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="total-month mt-6">
-                            <h3 class="title is-4 has-text-weight-semibold">Totales por mes</h3>
-                            <div class="title-totals-month-container columns is-mobile">
-                                <div class="column is-3">
-                                    <span class="has-text-weight-semibold">Mes</span>
-                                </div>
-                                <div class="column is-3">
-                                    <span class="has-text-weight-semibold">Ganancias</span>
-                                </div>
-                                <div class="column is-3">
-                                    <span class="has-text-weight-semibold">Gastos</span>
-                                </div>
-                                <div class="column is-3">
-                                    <span class="has-text-weight-semibold">Balance</span>
-                                </div> 
-                            </div>
-                            <div id="total-month-container">
-                                <div class="columns">
-                                    <div class="column is-3">
-                                        <span class="tag is-primary is-light">Categoría</span>
+                                <div id="total-category-container">
+                                    <div class="columns">
+                                        <div class="column is-3">
+                                            <span class="tag is-primary is-light">Categoría</span>
+                                        </div>
+                                        <div class="column is-3 has-text-success">
+                                            <span>+$</span>
+                                            <span class="has-text-weight-semibold">Ganancias</span>
+                                        </div>
+                                        <div class="column is-3 has-text-danger">
+                                            <span>-$</span>
+                                            <span class="has-text-weight-semibold">Gastos</span>
+                                        </div>
+                                        <div class="column is-3">
+                                            <span>$</span>
+                                            <span class="has-text-weight-semibold">Balance</span>
+                                        </div>
                                     </div>
-                                    <div class="column is-3 has-text-success">
-                                        <span>+$</span>
+                                </div>
+                            </div>
+                            <div class="total-month mt-6">
+                                <h3 class="title is-4 has-text-weight-semibold">Totales por mes</h3>
+                                <div class="title-totals-month-container columns is-mobile">
+                                    <div class="column is-3">
+                                        <span class="has-text-weight-semibold">Mes</span>
+                                    </div>
+                                    <div class="column is-3">
                                         <span class="has-text-weight-semibold">Ganancias</span>
                                     </div>
-                                    <div class="column is-3 has-text-danger">
-                                        <span>-$</span>
+                                    <div class="column is-3">
                                         <span class="has-text-weight-semibold">Gastos</span>
                                     </div>
                                     <div class="column is-3">
-                                        <span>$</span>
                                         <span class="has-text-weight-semibold">Balance</span>
+                                    </div> 
+                                </div>
+                                <div id="total-month-container">
+                                    <div class="columns">
+                                        <div class="column is-3">
+                                            <span class="tag is-primary is-light">Categoría</span>
+                                        </div>
+                                        <div class="column is-3 has-text-success">
+                                            <span>+$</span>
+                                            <span class="has-text-weight-semibold">Ganancias</span>
+                                        </div>
+                                        <div class="column is-3 has-text-danger">
+                                            <span>-$</span>
+                                            <span class="has-text-weight-semibold">Gastos</span>
+                                        </div>
+                                        <div class="column is-3">
+                                            <span>$</span>
+                                            <span class="has-text-weight-semibold">Balance</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <!-- FIN BOX REPORTES -->
+                    <!-- FIN BOX REPORTES -->
+                </div>
             </div>
-        </div>
+        <!-- </div> -->
     
     </section>
     <!-- *** [FIN REPORTES] *** -->
