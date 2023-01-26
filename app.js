@@ -84,31 +84,31 @@ checkViewOperations();
 //Funcionamiento nav balance/categorias/reportes
 
 let goToBalance = () => {
-  $("#view-balance").classList.remove("oculto");
-  $("#view-categories").classList.add("oculto");
-  $("#view-reports").classList.add("oculto");
+  $("#view-balance").classList.remove("is-hidden");
+  $("#view-categories").classList.add("is-hidden");
+  $("#view-reports").classList.add("is-hidden");
 
-  $("#view-balance-operation-filter").classList.remove("oculto");
-  $("#view-new-operation").classList.add("oculto");
+  $("#view-balance-operation-filter").classList.remove("is-hidden");
+  $("#view-new-operation").classList.add("is-hidden");
 
-  $("#view-edit-operation").classList.add("oculto");
+  $("#view-edit-operation").classList.add("is-hidden");
 
   checkViewOperations();
 };
 
 let goToCategories = () => {
-  $("#view-balance").classList.add("oculto");
-  $("#view-categories").classList.remove("oculto");
-  $("#view-reports").classList.add("oculto");
+  $("#view-balance").classList.add("is-hidden");
+  $("#view-categories").classList.remove("is-hidden");
+  $("#view-reports").classList.add("is-hidden");
 
-  $("#view-edit-category").classList.add("oculto");
-  $("#view-category").classList.remove("oculto");
+  $("#view-edit-category").classList.add("is-hidden");
+  $("#view-category").classList.remove("is-hidden");
 };
 
 let goToReports = () => {
-  $("#view-balance").classList.add("oculto");
-  $("#view-categories").classList.add("oculto");
-  $("#view-reports").classList.remove("oculto");
+  $("#view-balance").classList.add("is-hidden");
+  $("#view-categories").classList.add("is-hidden");
+  $("#view-reports").classList.remove("is-hidden");
 
   if(operations.length>=3){
     showTotalsCategories(operations);
@@ -159,8 +159,8 @@ $("#navbar-burguer").addEventListener("click", () => {
 $("#new-operation-button").addEventListener("click", () => {
   setDateTodayNewOperation();
   cleanInputOperation();
-  $("#view-new-operation").classList.remove("oculto");
-  $("#view-balance-operation-filter").classList.add("oculto");
+  $("#view-new-operation").classList.remove("is-hidden");
+  $("#view-balance-operation-filter").classList.add("is-hidden");
 
   $('#description-new-operation-input-help').classList.add('is-hidden');
   $('#amount-new-operation-input-help').classList.add('is-hidden');
@@ -176,7 +176,7 @@ $("#new-operation-button").addEventListener("click", () => {
 
 //Funcionamiento Ocultar Filtros
 $("#link-hide-filters").addEventListener("click", () => {
-  $("#filter-container").classList.toggle("oculto");
+  $("#filter-container").classList.toggle("is-hidden");
 });
 
 // Mostrar las categorias del array
@@ -233,8 +233,8 @@ let previousCategory;
 //----Editar categoria------
 let openEditCategory = (id) => {
   $("#new-category-input").value = "";
-  $("#view-edit-category").classList.remove("oculto");
-  $("#view-category").classList.add("oculto");
+  $("#view-edit-category").classList.remove("is-hidden");
+  $("#view-category").classList.add("is-hidden");
   for (const category of categories) {
     if (category.id === id) previousCategory = category.name;
   }
@@ -394,8 +394,8 @@ cancelNewOperation();
 //Funcionamiento Editar Operacion
 let openEditOperation = (id) => {
   cleanInputEditOperation(id);
-  $("#view-edit-operation").classList.remove("oculto");
-  $("#view-balance-operation-filter").classList.add("oculto");
+  $("#view-edit-operation").classList.remove("is-hidden");
+  $("#view-balance-operation-filter").classList.add("is-hidden");
 
   editOperation(id);
 };
